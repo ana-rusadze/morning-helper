@@ -63,7 +63,7 @@ class HomeActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     }
 
     override fun onFling(
-        event1: MotionEvent,it
+        event1: MotionEvent,
         event2: MotionEvent,
         velocityX: Float,
         velocityY: Float
@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         Log.d(DEBUG_TAG, "onSingleTapUp: $event")
         return true
     }
-//    blabla
+//    blabla <-- Ulamazesi pasuxi
 
 
 }
