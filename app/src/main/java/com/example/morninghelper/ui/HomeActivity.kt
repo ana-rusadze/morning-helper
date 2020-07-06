@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         Log.d(DEBUG_TAG, "onSingleTapUp: $event")
         return true
     }
-//    blabla <-- Ulamazesi pasuxi
+//    Final 
 
 
 }
