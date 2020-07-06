@@ -96,5 +96,9 @@ class HomeActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     }
 //    blabla <-- Ulamazesi pasuxi
 
+    fun test(){
+        d("TestLog", "Ana and Lika are the best humans ever")
+    }
+
 
 }
