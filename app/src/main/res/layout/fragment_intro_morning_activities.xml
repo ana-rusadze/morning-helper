@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    tools:context=".ui.intro_activity.fragments.IntroMorningActivities">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:padding="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_background_white"
+        android:src="@drawable/sloth_computer"
+        android:contentDescription="@string/welcome_text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#56FFFFFF"
+        android:fontFamily="@font/fredoka_one"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/organize_activities"
+        android:textColor="@color/redLightColor"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

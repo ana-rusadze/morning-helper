@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Morning Helper</string>
+    <string name="skip">Skip</string>
+    <string name="welcome_text">Hello! It\'s a pleasure to be your Helper! I\'ll do anything to make your mornings better and beautiful</string>
+    <string name="set_alarm">"Set up an alarm with various games to wake up effectively And if you fell asleep I\'ll inform your friends about it"</string>
+    <string name="fell_asleep">And if you fell asleep I\'ll inform your friends about it</string>
+    <string name="organize_activities">Organize your morning activities: read news, look up for daily horoscopes or write a to-do list</string>
+    <string name="keep_track_habits">Keep track of your morning habits to make your day more productive</string>
+    <string name="begin">Begin</string>
+    <string name="let_s_organize_your_morning">Let\'s organize your morning</string>
+    <string name="morning">morning</string>
+    <string name="helper">helper</string>
+    <string name="horoscopes">Horoscopes</string>
+    <string name="habit_tracker">Habit Tracker</string>
+    <string name="upcoming_alarms">Upcoming alarms</string>
+    <string name="to_do_list">To Do List</string>
+    <string name="swipe_to_see_more">Swipe up to see more</string>
+    <string name="hello_name">Hello, Name!</string>
+    <string name="have_a_good_day">Have a good day..</string>
+    <string name="your_name">your name</string>
+    <string name="enter_your_name_and_let_s_begin">Enter your name and let\'s begin!</string>
+    <string name="alarms">Alarms</string>
+    <string name="news">News</string>
+    <string name="habits_tracker">Habits tracker</string>
+    <string name="music">Music</string>
+    <string name="morning_lower_case">morning</string>
+</resources>

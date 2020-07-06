@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SetAlarmActivity">
+
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layoutDescription="@xml/scene_day_night">
+
+        <View
+            android:id="@+id/colorBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/creamColor"
+            android:scaleType="centerCrop" />
+
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="200dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:background="#46FFFFFF"
+            android:padding="10dp"
+            android:timePickerMode="spinner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/sun_moon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/sun"
+            app:altSrc="@drawable/moon" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/alarmOptionsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redLightColor"
+            android:text="Repeat" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="never"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redLightColor"
+            android:text="Ringtone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/ringtonesRecyclerView"
+            android:layout_marginBottom="10dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redLightColor"
+            android:text="Dismiss With" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="default"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="games"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:fontFamily="@font/fredoka_one"
+                android:textColor="@color/redLightColor"
+                android:text="Snooze Time" />
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:hint="min"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:fontFamily="@font/fredoka_one"
+                android:textColor="@color/redLightColor"
+                android:text="Label" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your label"
+                android:textSize="17sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:maxLength="30"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redLightColor"
+            android:text="Send Automatic Message"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/yellow_background"
+            android:text="Save"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/fredoka_one"
+            android:textAllCaps="false"
+            android:textSize="18sp"/>
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>

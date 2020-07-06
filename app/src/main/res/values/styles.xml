@@ -1,0 +1,27 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Customize your theme here. -->
+<!--        <item name="colorPrimary">@android:color/transparent</item>-->
+<!--        <item name="colorPrimaryDark">@android:color/transparent</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+
+    </style>
+
+    <style name="tabStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/fredoka_one</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="seekBarStyle">
+        <item name="android:minHeight">8dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+
+
+
+</resources>

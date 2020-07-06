@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="greenColor">#3d5b5b</color>
+    <color name="redColor">#813333</color>
+    <color name="creamColor">#EDDDC4</color>
+    <color name="yellowColor">#E7B34D</color>
+    <color name="redLightColor">#ac502d</color>
+    <color name="brown">#936E4A</color>
+    <color name="progressBarShadow">#B49A9A9A</color>
+</resources>
