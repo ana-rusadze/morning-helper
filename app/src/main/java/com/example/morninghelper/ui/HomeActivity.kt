@@ -94,8 +94,9 @@ class HomeActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         Log.d(DEBUG_TAG, "onSingleTapUp: $event")
         return true
     }
+    
 //    Final 
-
+// one more test
     fun test(){
         d("TestLog", "Ana and Lika are the best humans ever")
     }
