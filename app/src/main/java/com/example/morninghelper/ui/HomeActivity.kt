@@ -96,7 +96,7 @@ class HomeActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     }
 
     fun test(){
-        d("TestLog", "Ana and Lika are the best android developers ever")
+        d("TestLog", "Ana and Lika are the best android developers ever in the world")
     }
 
     fun anotherTest(){
