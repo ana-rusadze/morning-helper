@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.SetAlarmActivity">
 
 
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motionLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="280dp"
         app:layoutDescription="@xml/scene_day_night">
 
         <View
@@ -35,164 +34,380 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/sun_moon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
             android:src="@drawable/sun"
-            app:altSrc="@drawable/moon" />
+            app:altSrc="@drawable/moon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include layout="@layout/toolbar_layout" />
 
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
 
     <LinearLayout
         android:id="@+id/alarmOptionsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:fontFamily="@font/fredoka_one"
-            android:textColor="@color/redLightColor"
-            android:text="Repeat" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="never"
-            android:textSize="14sp"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:fontFamily="@font/fredoka_one"
-            android:textColor="@color/redLightColor"
-            android:text="Ringtone" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/ringtonesRecyclerView"
-            android:layout_marginBottom="10dp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:fontFamily="@font/fredoka_one"
-            android:textColor="@color/redLightColor"
-            android:text="Dismiss With" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="default"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="games"
-            android:textSize="14sp"
-            android:layout_marginBottom="10dp"/>
+        android:layout_gravity="bottom"
+        android:background="@drawable/white_rectangle_bg"
+        android:orientation="vertical"
+        android:padding="25dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/leftSide"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:fontFamily="@font/fredoka_one"
-                android:textColor="@color/redLightColor"
-                android:text="Snooze Time" />
+                android:layout_marginEnd="5dp"
+                android:layout_weight="50"
+                android:orientation="vertical">
 
-            <EditText
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:hint="min"
-                android:textSize="17sp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="2"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/repeatCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/lightCreamColor"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka_one"
+                            android:text="@string/repeat"
+                            android:textColor="@color/redLightColor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/repeatTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/never"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ringtoneCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/lightCreamColor"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:id="@+id/ringtoneTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka_one"
+                            android:text="@string/ringtone"
+                            android:textColor="@color/redLightColor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/selectedRingtoneTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/dismissWithCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/lightCreamColor"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka_one"
+                            android:text="@string/dismiss_with"
+                            android:textColor="@color/redLightColor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/dismissWithTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/default_text"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/lightCreamColor"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka_one"
+                            android:text="@string/snooze_time"
+                            android:textColor="@color/redLightColor"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/snoozeTimeEditText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:hint="@string/_5_min"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rightSide"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="30dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sloth_sleeping2" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#D3F4F2E9"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka_one"
+                            android:text="@string/label"
+                            android:textColor="@color/redLightColor"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/labelEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:gravity="start"
+                            android:hint="@string/label"
+                            android:maxLength="30"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:fontFamily="@font/fredoka_one"
-                android:textColor="@color/redLightColor"
-                android:text="Label" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter your label"
-                android:textSize="17sp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="start"
+                android:layout_gravity="center"
+                android:background="@color/lightCreamColor"
+                android:orientation="vertical"
+                android:padding="5dp"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:maxLength="30"/>
+                android:paddingEnd="10dp">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/fredoka_one"
+                    android:text="@string/send_automatic_message"
+                    android:textColor="@color/redLightColor"
+                    android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:fontFamily="@font/fredoka_one"
-            android:textColor="@color/redLightColor"
-            android:text="Send Automatic Message"
-            android:layout_marginBottom="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="@drawable/yellow_background"
-            android:text="Save"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/fredoka_one"
-            android:textAllCaps="false"
-            android:textSize="18sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka_one"
+                        android:text="@string/number"
+                        android:textColor="@color/redLightColor"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/numberEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:hint="@string/enter_a_number"
+                        android:inputType="number"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka_one"
+                        android:text="@string/sms"
+                        android:textColor="@color/redLightColor"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/messageEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:hint="@string/enter_a_message"
+                        android:maxLength="50"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka_one"
+                        android:text="@string/after_how_many_alarms"
+                        android:textColor="@color/redLightColor"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/missedAlarmsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:hint="@string/missed_alarms"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
 
-    </ScrollView>
+    <Button
+        android:id="@+id/saveAlarmButton"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_margin="10dp"
+        android:background="@drawable/yellow_background"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/zzz_anim"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center|end"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/zzz" />
 
+    <include layout="@layout/chooser_dialog_layout"/>
 
-
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

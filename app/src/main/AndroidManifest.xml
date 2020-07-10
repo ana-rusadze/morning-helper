@@ -3,6 +3,9 @@
     package="com.example.morninghelper">
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission-sdk-23 android:name="android.permission.SEND_SMS"/>
+
     <application
         android:name=".application.App"
         android:allowBackup="true"
@@ -25,6 +28,7 @@
 
         </activity>
         <activity android:name=".ui.dashboard_activity.DashboardActivity"/>
+
 
 
         <meta-data

@@ -36,14 +36,14 @@
         android:gravity="center"
         android:layout_marginEnd="20dp"
         android:background="@drawable/background_cream"
-        android:hint="@string/your_name"
+        android:hint="Name here"
         android:textStyle="bold"
         android:padding="10dp"
         android:maxLines="1"
         android:maxLength="25"
         android:ellipsize="end"
         android:textColor="@color/greenColor"
-        android:textColorHint="@color/greenColor" />
+        android:textColorHint="#B73D5B5B" />
 
 
 </LinearLayout>

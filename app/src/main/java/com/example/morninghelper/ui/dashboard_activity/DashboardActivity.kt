@@ -1,7 +1,10 @@
 package com.example.morninghelper.ui.dashboard_activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log.d
+import android.view.MotionEvent
+
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,6 +16,7 @@ import com.example.morninghelper.networking.EndPoints
 import com.example.morninghelper.networking.HoroscopeCallback
 import com.example.morninghelper.networking.HoroscopeDataLoader
 import com.example.morninghelper.tools.setColor
+import com.example.morninghelper.ui.HomeActivity
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.daily_horoscope.HoroscopeFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.daily_horoscope.HoroscopeModel
@@ -30,6 +34,7 @@ import okhttp3.Request
 
 
 class DashboardActivity : AppCompatActivity() {
+
 
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private var fragmentsItems = mutableListOf<Fragment>()
@@ -94,11 +99,11 @@ class DashboardActivity : AppCompatActivity() {
         settingsBT.setBackgroundResource(R.mipmap.ic_settings_white)
         titleTV.setColor(
             getString(R.string.morning),
-            ContextCompat.getColor(this, android.R.color.white)
+            ContextCompat.getColor(this, R.color.brown)
         )
         titleTV.setColor(
             getString(R.string.helper),
-            ContextCompat.getColor(this, R.color.yellowColor)
+            ContextCompat.getColor(this, R.color.slothSkinColor)
         )
     }
 

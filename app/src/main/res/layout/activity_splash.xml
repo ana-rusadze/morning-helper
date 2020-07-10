@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
         android:text="@string/morning"
-        android:textColor="#D6B590"
+        android:textColor="@color/slothSkinColor"
         android:textSize="24sp" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:fontFamily="@font/fredoka_one"
         android:gravity="center"
         android:text="@string/helper"
-        android:textColor="#936E4A"
+        android:textColor="@color/brown"
         android:textSize="22sp" />
 
 </LinearLayout>
