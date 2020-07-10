@@ -28,24 +28,15 @@
                 motion:customColorValue="@color/creamColor"/>
         </Constraint>
 
-<!--        <Constraint-->
-<!--            android:id="@id/skyBackground"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <CustomAttribute-->
-<!--                motion:attributeName="crossfade"-->
-<!--                motion:customFloatValue="0"/>-->
-<!--        </Constraint>-->
-
         <Constraint
             android:id="@id/sun_moon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent">
+            motion:layout_constraintStart_toStartOf="parent">
             <CustomAttribute
                 motion:attributeName="crossfade"
                 motion:customFloatValue="0"/>
@@ -64,24 +55,15 @@
                 motion:customColorValue="@color/greenColor"/>
         </Constraint>
 
-<!--        <Constraint-->
-<!--            android:id="@id/skyBackground"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <CustomAttribute-->
-<!--                motion:attributeName="crossfade"-->
-<!--                motion:customFloatValue="1"/>-->
-<!--        </Constraint>-->
-
         <Constraint
             android:id="@id/sun_moon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintTop_toTopOf="parent">
+            motion:layout_constraintEnd_toEndOf="parent">
             <CustomAttribute
                 motion:attributeName="crossfade"
                 motion:customFloatValue="1"/>

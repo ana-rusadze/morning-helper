@@ -95,10 +95,10 @@ class IntroActivity : AppCompatActivity() {
 
 
     private fun openActivity() {
-//        AppSharedPreferences.saveString(
-//            AppSharedPreferences.FIRST_OPEN,
-//            "done"
-//        )
+        AppSharedPreferences.saveString(
+            AppSharedPreferences.FIRST_OPEN,
+            "done"
+        )
         AppSharedPreferences.saveString(AppSharedPreferences.USER_NAME, nameEditText.text.toString())
         Tools.startActivity(this, HomeActivity::class.java, null, true)
     }

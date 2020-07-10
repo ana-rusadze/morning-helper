@@ -10,4 +10,6 @@
     <color name="redLightColor">#ac502d</color>
     <color name="brown">#936E4A</color>
     <color name="progressBarShadow">#B49A9A9A</color>
+    <color name="slothSkinColor">#D6B590</color>
+    <color name="lightCreamColor">#f4f2e9</color>
 </resources>

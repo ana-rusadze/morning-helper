@@ -1,6 +1,8 @@
 package com.example.morninghelper.ui.dashboard_activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -9,6 +11,7 @@ import com.example.morninghelper.R
 import com.example.morninghelper.tools.Tools.tabSelectedListener
 import com.example.morninghelper.application.App
 import com.example.morninghelper.tools.setColor
+import com.example.morninghelper.ui.HomeActivity
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.habits_tracker.HabitsTrackerFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.music.MusicFragment
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.toolbar_layout.*
 
 
 class DashboardActivity : AppCompatActivity() {
+
 
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private var fragmentsItems = mutableListOf<Fragment>()
@@ -71,7 +75,7 @@ class DashboardActivity : AppCompatActivity() {
         viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.tabSelectedListener(viewPager)
 
-   }
+    }
 
     private fun attachToolbar() {
         setSupportActionBar(toolBar)
@@ -80,12 +84,15 @@ class DashboardActivity : AppCompatActivity() {
         settingsBT.setBackgroundResource(R.mipmap.ic_settings_white)
         titleTV.setColor(
             getString(R.string.morning),
-            ContextCompat.getColor(this, android.R.color.white)
+            ContextCompat.getColor(this, R.color.brown)
         )
         titleTV.setColor(
             getString(R.string.helper),
-            ContextCompat.getColor(this, R.color.yellowColor)
+            ContextCompat.getColor(this, R.color.slothSkinColor)
         )
     }
+
+
+
 
 }
