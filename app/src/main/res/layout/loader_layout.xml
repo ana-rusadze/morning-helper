@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.ybq.android.spinkit.SpinKitView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/SpinKitView.Small.DoubleBounce"
+    android:layout_width="50dp"
+    android:padding="10dp"
+    android:id="@+id/spinKitLoaderView"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical|end"
+    android:visibility="gone"
+    app:SpinKit_Color="@color/greenColor" />
+
+

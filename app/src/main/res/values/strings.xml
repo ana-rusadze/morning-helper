@@ -24,4 +24,11 @@
     <string name="habits_tracker">Habits tracker</string>
     <string name="music">Music</string>
     <string name="morning_lower_case">morning</string>
+    <string name="horoscope_domain">https://horoscope5.p.rapidapi.com/general/</string>
+    <string name="incorrect_request">Incorrect Request</string>
+    <string name="an_error_occurred_please_try_again">an error occurred please try again</string>
+    <string name="horoscope">Horoscope</string>
+    <string name="horoscope_key">7fcf43cdf4msh33c143365e50c90p19b324jsn4f4b2993b5f7</string>
+    <string name="your_daily_horoscope">Read your daily horoscope</string>
+    <string name="search_your_sign_here">search your sign here</string>
 </resources>

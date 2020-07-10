@@ -1,6 +1,5 @@
 package com.example.morninghelper.ui.dashboard_activity.fragments.music
 
-import android.graphics.PorterDuff
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.morninghelper.R
-import kotlinx.android.synthetic.main.music_fragment_start.view.*
+import com.example.morninghelper.ui.dashboard_activity.fragments.news.NewsViewModel
 import java.util.EnumSet.of
 
 class MusicFragment : Fragment() {
@@ -25,18 +24,19 @@ class MusicFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        itemView = inflater.inflate(R.layout.music_fragment_start, container, false)
+        itemView =  inflater.inflate(R.layout.music_fragment, container, false)
         return itemView
-    }
-//
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders(this).get(MusicViewModel::class.java)
-//
-//    }
 
-    private fun init(){
-        itemView.seekBar.thumb.setColorFilter(resources.getColor(R.color.yellowColor), PorterDuff.Mode.MULTIPLY)
+
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(MusicViewModel::class.java)
+
+
+    }
+
+
 
 }

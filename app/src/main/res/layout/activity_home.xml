@@ -14,6 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+<!--        <Button-->
+<!--            android:layout_gravity="end"-->
+<!--            android:id="@+id/permission"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"/>-->
+
         <ImageView
             android:layout_width="180dp"
             android:layout_height="180dp"

@@ -16,21 +16,21 @@ class SetAlarmActivity : AppCompatActivity() {
 
     private fun init() {
         timePicker.setIs24HourView(true)
-        animateDayNight()
+//        animateDayNight()
         onClickTime()
     }
 
     private fun onClickTime() {
         timePicker.setOnTimeChangedListener { _, _, _ ->
-            animateDayNight()
+//            animateDayNight()
         }
     }
 
-    private fun animateDayNight() {
-        if (timePicker.hour in 6..18)
-            motionLayout.transitionToStart()
-        else
-            motionLayout.transitionToEnd()
-
-    }
+//    private fun animateDayNight() {
+//        if (timePicker.hour in 6..18)
+//            motionLayout.transitionToStart()
+//        else
+//            motionLayout.transitionToEnd()
+//
+//    }
 }
