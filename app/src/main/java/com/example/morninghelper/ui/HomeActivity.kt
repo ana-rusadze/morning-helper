@@ -1,7 +1,9 @@
 package com.example.morninghelper.ui
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.util.Log
 import android.util.Log.d
 import android.view.GestureDetector
@@ -9,12 +11,18 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
+import androidx.core.app.ActivityCompat
+import androidx.core.view.GestureDetectorCompat
+
 import androidx.core.view.MotionEventCompat
 import com.example.morninghelper.R
+import com.example.morninghelper.application.App
 import com.example.morninghelper.shared_preferences.AppSharedPreferences
 import com.example.morninghelper.tools.Tools
 import com.example.morninghelper.ui.dashboard_activity.DashboardActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.jar.Manifest
 
 
 class HomeActivity : AppCompatActivity() {
@@ -32,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         init()
+
     }
 
 
@@ -68,5 +77,8 @@ class HomeActivity : AppCompatActivity() {
         return super.onTouchEvent(event)
     }
 }
+
+
+
 
 

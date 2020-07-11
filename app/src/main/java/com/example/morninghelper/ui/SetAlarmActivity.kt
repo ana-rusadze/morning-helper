@@ -52,6 +52,7 @@ class SetAlarmActivity : AppCompatActivity() {
             RingtoneManager.TYPE_ALARM
         )
         timePicker.setIs24HourView(true)
+
         onClickTime()
         listeners()
         setRingtoneText(selectedRingtone)
@@ -66,7 +67,10 @@ class SetAlarmActivity : AppCompatActivity() {
             else
                 motionLayout.transitionToEnd()
         }
+
     }
+
+
 
 
     private fun accessRingtone() {
@@ -196,6 +200,7 @@ class SetAlarmActivity : AppCompatActivity() {
 //        setResult(Activity.RESULT_OK, intent)
 //        finish()
 //    }
+
 
 
 }
