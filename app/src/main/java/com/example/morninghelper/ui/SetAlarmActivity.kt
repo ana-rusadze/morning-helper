@@ -121,7 +121,7 @@ class SetAlarmActivity : AppCompatActivity() {
             accessRingtone()
         }
         saveAlarmButton.setOnClickListener {
-            addNewAlarm()
+//            addNewAlarm()
         }
         repeatCardView.setOnClickListener {
             showChooser(arrayOf("Never", "Mon - Fri", "Daily"), R.id.repeatTextView)
@@ -177,25 +177,25 @@ class SetAlarmActivity : AppCompatActivity() {
         chooserAdapter.notifyDataSetChanged()
     }
 
-    private fun addNewAlarm(){
-        val intent = Intent(this, AlarmClockFragment::class.java)
-        val alarmModel = AlarmModel(
-            "${timePicker.hour}:${timePicker.minute}",
-            repeatTextView.text.toString(),
-            labelEditText.text.toString(),
-            selectedRingtone,
-            dismissWithTextView.text.toString(),
-            snoozeTimeEditText.text.toString(),
-            numberEditText.text.toString(),
-            messageEditText.text.toString(),
-            missedAlarmsEditText.text.toString(),
-            true
-        )
-        intent.putExtra("new alarm", alarmModel)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        setResult(Activity.RESULT_OK, intent)
-        finish()
-    }
+//    private fun addNewAlarm(){
+//        val intent = Intent(this, AlarmClockFragment::class.java)
+//        val alarmModel = AlarmModel(
+//            "${timePicker.hour}:${timePicker.minute}",
+//            repeatTextView.text.toString(),
+//            labelEditText.text.toString(),
+//            selectedRingtone,
+//            dismissWithTextView.text.toString(),
+//            snoozeTimeEditText.text.toString(),
+//            numberEditText.text.toString(),
+//            messageEditText.text.toString(),
+//            missedAlarmsEditText.text.toString(),
+//            true
+//        )
+//        intent.putExtra("new alarm", alarmModel)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//        setResult(Activity.RESULT_OK, intent)
+//        finish()
+//    }
 
 
 }
