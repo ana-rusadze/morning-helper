@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greenColor"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard_activity.fragments.notes.activity.CreateNoteActivity">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/titleET"
+            style="@style/createNoteEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableStart="@mipmap/ic_label"
+            android:drawablePadding="10dp"
+            android:hint="@string/title" />
+
+        <EditText
+            android:id="@+id/descriptionET"
+            style="@style/createNoteEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:hint="@string/description" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:id="@+id/colorChooserAnimation"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="39dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/color_chooser" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/colorChooserRecyclerView"
+                android:scrollbars="none"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:padding="10dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

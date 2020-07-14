@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.morninghelper">
-    <uses-permission android:name="android.permission.INTERNET"/>
 
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission-sdk-23 android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission-sdk-23 android:name="android.permission.SEND_SMS" />
 
     <application
         android:name=".application.App"
@@ -14,7 +15,9 @@
         android:roundIcon="@drawable/hey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.dashboard_activity.fragments.notes.activity.CreateNoteActivity">
 
+        </activity>
         <activity android:name=".ui.SetAlarmActivity">
 
         </activity>
@@ -23,13 +26,11 @@
         <activity android:name=".ui.splash_activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".ui.dashboard_activity.DashboardActivity"/>
-
-
+        <activity android:name=".ui.dashboard_activity.DashboardActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

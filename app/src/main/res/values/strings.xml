@@ -20,7 +20,7 @@
     <string name="your_name">your name</string>
     <string name="enter_your_name_and_let_s_begin">Enter your name and let\'s begin!</string>
     <string name="alarms">Alarms</string>
-    <string name="news">News</string>
+    <string name="notes">Notes</string>
     <string name="habits_tracker">Habits tracker</string>
     <string name="music">Music</string>
     <string name="morning_lower_case">morning</string>
@@ -53,4 +53,7 @@
     <string name="no_alarms_yet">No alarms yet</string>
     <string name="off">OFF</string>
     <string name="on">ON</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="createNote">Create Note</string>
 </resources>

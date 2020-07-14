@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.example.morninghelper.R
-import com.example.morninghelper.ui.dashboard_activity.fragments.news.NewsViewModel
-import java.util.EnumSet.of
 
 class MusicFragment : Fragment() {
 

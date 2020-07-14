@@ -1,6 +1,7 @@
 package com.example.morninghelper.tools
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +10,11 @@ import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.fragment_intro_welcome.view.*
 import androidx.viewpager.widget.ViewPager
 import com.example.morninghelper.R
+import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
+import com.example.morninghelper.tools.extensions.DeleteItemInterface
 import com.example.morninghelper.ui.HomeActivity
 import com.example.morninghelper.ui.dashboard_activity.DashboardActivity
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 
 
@@ -85,6 +89,10 @@ object Tools {
 
         })
     }
+
+
+
+
 //
 //    fun <T> slideUpGesture(event: MotionEvent, activity: Activity, cls: Class<T>) {
 //

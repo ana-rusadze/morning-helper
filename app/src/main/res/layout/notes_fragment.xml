@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_rectangle_bg"
+    tools:context=".ui.dashboard_activity.fragments.notes.NotesFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="27dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+
+        <EditText
+            android:id="@+id/searchNoteET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/search_edit_text_background"
+            android:drawableEnd="@mipmap/ic_search"
+            android:padding="10dp"
+            android:textCursorDrawable="@android:color/white" />
+    </androidx.cardview.widget.CardView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:visibility="visible"
+            android:layout_marginTop="110dp" />
+
+    <include
+        android:id="@+id/addYourNote"
+        android:visibility="invisible"
+        layout="@layout/add_your_first_note_layout"/>
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNoteBT"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/redLightColor"
+        android:backgroundTint="@color/redLightColor"
+        app:borderWidth="0dp" />
+
+
+</FrameLayout>

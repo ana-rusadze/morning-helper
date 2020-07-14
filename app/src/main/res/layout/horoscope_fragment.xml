@@ -1,49 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/white_rectangle_bg"
     tools:context=".ui.dashboard_activity.fragments.daily_horoscope.HoroscopeFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="10dp">
-
-                <EditText
-                    android:id="@+id/searchSignET"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/creamColor"
-                    android:hint="@string/search_your_sign_here"
-                    android:padding="10dp"
-                    android:textColorHint="@color/greenColor" />
-
-                <include layout="@layout/loader_layout" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp">
 
@@ -51,37 +34,58 @@
                     android:id="@+id/readHoroscopeBT"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
-                    android:textAllCaps="false"
                     android:background="@color/greenColor"
                     android:fontFamily="@font/fredoka_one"
                     android:padding="10dp"
                     android:text="@string/your_daily_horoscope"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:elevation="10dp"
-                android:visibility="invisible"
-                app:cardCornerRadius="10dp">
 
-                <TextView
-                    android:id="@+id/horoscopeDescriptionTV"
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_height="350dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/horoscopeDescriptionCV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/yellowColor"
-                    android:fontFamily="@font/fredoka_one"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white" />
-            </androidx.cardview.widget.CardView>
+                    android:elevation="10dp"
+                    android:visibility="invisible"
+                    app:cardCornerRadius="10dp">
+
+                    <TextView
+                        android:id="@+id/horoscopeDescriptionTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:background="@color/yellowColor"
+                        android:fontFamily="@font/fredoka_one"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+                </androidx.cardview.widget.CardView>
+
+                <ProgressBar
+                    android:id="@+id/spinKitLoaderProgressBar"
+                    style="@style/SpinKitView.Small.DoubleBounce"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
 
         </LinearLayout>
 
-
     </FrameLayout>
+    </ScrollView>
+    <include
+        android:id="@+id/bottomSheetLayout"
+        layout="@layout/chooser_dialog_layout"/>
 
-
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
