@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background2"
+    tools:context=".ui.dashboard_activity.fragments.alarm_clock.game.AlarmRingingGameActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gameRecyclerView"
+        android:layout_width="match_parent"
+        android:background="@drawable/button_background_round"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        tools:listitem="@layout/game_recyclerview_layout"
+        android:layout_margin="20dp" />
+
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/sloth_confused" />
+
+        <Button
+            android:id="@+id/answerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/answer"
+            android:layout_margin="20dp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:background="@drawable/selected_tab_item"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redColor"
+            android:layout_gravity="center_vertical" />
+
+
+</LinearLayout>

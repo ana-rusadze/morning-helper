@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SetAlarmActivity">
+    tools:context=".ui.dashboard_activity.fragments.alarm_clock.SetAlarmActivity">
 
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -204,7 +204,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:gravity="center"
-                            android:hint="@string/_5_min"
+                            android:text="@string/_5"
+                            android:textColor="@android:color/tertiary_text_dark"
+                            android:hint="@string/min"
                             android:inputType="number"
                             android:maxLength="2"
                             android:paddingStart="5dp"
@@ -386,11 +388,11 @@
 
     <Button
         android:id="@+id/saveAlarmButton"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_margin="10dp"
-        android:background="@drawable/yellow_background"
+        android:layout_marginTop = "5dp"
+        android:background="@drawable/selected_tab_item"
         android:fontFamily="@font/fredoka_one"
         android:text="@string/save"
         android:textAllCaps="false"

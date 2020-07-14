@@ -26,8 +26,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
         Tools.animation(this, R.anim.slide_up, helloImageView )
     }
 
@@ -61,13 +59,6 @@ class SplashActivity : AppCompatActivity() {
     private fun removeCallBack() {
         handler.removeCallbacks(runnable)
     }
-
-    private fun animation() {
-//        val animation = AnimationUtils.loadAnimation(this, R.anim.slide_up)
-//        helloImageView.startAnimation(animation)
-    }
-
-
 
 }
 

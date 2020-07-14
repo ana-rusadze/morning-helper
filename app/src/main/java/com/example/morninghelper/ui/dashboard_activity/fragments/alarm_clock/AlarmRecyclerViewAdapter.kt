@@ -1,13 +1,17 @@
 package com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock
 
+
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morninghelper.R
-import kotlinx.android.synthetic.main.alarm_clock_fragment.view.*
 import kotlinx.android.synthetic.main.alarms_recyclerview_layout.view.*
 
 
@@ -27,11 +31,11 @@ class AlarmRecyclerViewAdapter(
             itemView.setOnClickListener(this)
             itemView.alarmSwitch.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked){
-                    Toast.makeText(itemView.context, "Alarm is Set from..", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(itemView.context, "Alarm is turned on", Toast.LENGTH_SHORT).show()
                     changeAlarmBackground(R.color.yellowColor)
                 }
                 else{
-                    Toast.makeText(itemView.context, "Alarm is Turned Off", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(itemView.context, "Alarm is turned off", Toast.LENGTH_SHORT).show()
                     changeAlarmBackground(R.color.lightCreamColor)
                 }
 
@@ -54,7 +58,8 @@ class AlarmRecyclerViewAdapter(
 
         override fun onClick(v: View?) {
             alarmInterface.onClick(adapterPosition)
-        }
+
+    }
 
     }
 

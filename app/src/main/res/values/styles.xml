@@ -1,6 +1,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name = "android:windowFullscreen">true</item>
 
     </style>
 
@@ -9,11 +10,13 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/fredoka_one</item>
         <item name="textAllCaps">false</item>
+        <item name = "android:windowFullscreen">true</item>
         <item name="android:textAllCaps">false</item>
     </style>
     <style name="seekBarStyle">
         <item name="android:minHeight">8dip</item>
         <item name="android:maxHeight">20dip</item>
+        <item name = "android:windowFullscreen">true</item>
     </style>
 
 

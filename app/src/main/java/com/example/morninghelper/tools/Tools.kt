@@ -1,7 +1,9 @@
 package com.example.morninghelper.tools
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -9,36 +11,38 @@ import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.fragment_intro_welcome.view.*
 import androidx.viewpager.widget.ViewPager
 import com.example.morninghelper.R
+import com.example.morninghelper.dialog.CustomDialogInterface
 import com.example.morninghelper.ui.HomeActivity
 import com.example.morninghelper.ui.dashboard_activity.DashboardActivity
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.dialog_layout.*
 
 
 object Tools {
-//    fun initDialog(context: Context, title: String, desc: String) {
-//        val dialog = Dialog(context)
-//        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-//        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setContentView(R.layout.dialog_layout)
-//
-//        val params: WindowManager.LayoutParams = dialog.window!!.attributes
-//        params.width = ViewGroup.LayoutParams.MATCH_PARENT
-//        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
-//        dialog.window!!.attributes = params as WindowManager.LayoutParams
-//        dialog.dialogTitle.text = title
-//        dialog.dialogDescription.text = desc
-//        dialog.okButton.setOnClickListener {
-//            dialog.dismiss()
-//        }
-//
-//        dialog.show()
+    fun initDialog(context: Context, title: String, customDialogInterface: CustomDialogInterface) {
+        val dialog = Dialog(context)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_layout)
+        val params: WindowManager.LayoutParams = dialog.window!!.attributes
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        dialog.window!!.attributes = params
+        dialog.dialogTitle.text = title
+        dialog.deleteButton.setOnClickListener {
+            customDialogInterface.delete(dialog)
+        }
+        dialog.editButton.setOnClickListener {
+            customDialogInterface.edit()
+        }
+        dialog.show()
 
-//    }
+    }
 
-    fun <T> startActivity(activity: Activity, cls: Class<T>, bundle: Bundle?, clearTasks: Boolean) {
+    fun <T> startActivity(activity: Activity, cls: Class<T>, data: String?, clearTasks: Boolean) {
         val intent = Intent(activity, cls)
-        if (bundle != null)
-            intent.putExtras(bundle)
+        if (data!= null)
+            intent.putExtra("data",data)
         if (clearTasks)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         activity.startActivity(intent)

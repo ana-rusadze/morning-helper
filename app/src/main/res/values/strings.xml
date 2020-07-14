@@ -35,9 +35,8 @@
     <string name="never">never</string>
     <string name="ringtone">Ringtone</string>
     <string name="dismiss_with">Dismiss With</string>
-    <string name="default_text">default</string>
+    <string name="default_text">Default</string>
     <string name="snooze_time">Snooze Time</string>
-    <string name="min">min</string>
     <string name="label">Label</string>
     <string name="enter_your_label">Enter your label</string>
     <string name="save">Save</string>
@@ -53,4 +52,12 @@
     <string name="no_alarms_yet">No alarms yet</string>
     <string name="off">OFF</string>
     <string name="on">ON</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="alarm_options">Alarm Options</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="snooze">Snooze</string>
+    <string name="answer">Answer</string>
+    <string name="_5">5</string>
+    <string name="min">min</string>
 </resources>

@@ -56,8 +56,8 @@
 
         <Button
             android:id="@+id/beginButton"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:text="@string/begin"
             android:textAllCaps="false"
@@ -65,7 +65,7 @@
             android:textSize="17sp"
             android:visibility="gone"
             android:textColor="@android:color/white"
-            android:background="@drawable/yellow_background"/>
+            android:background="@drawable/selected_tab_item"/>
 
 
 

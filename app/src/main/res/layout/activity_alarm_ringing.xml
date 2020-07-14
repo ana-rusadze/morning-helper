@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightCreamColor"
+    tools:context=".ui.dashboard_activity.fragments.alarm_clock.AlarmRingingActivity">
+
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:src="@drawable/sloth_waking_up"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/ringing" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:layout_marginTop="120dp">
+
+        <Button
+            android:id="@+id/dismissButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/dismiss"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:background="@drawable/selected_tab_item"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redColor"
+            android:layout_gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/snoozeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/snooze"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:background="@drawable/unselected_tab_item"
+            android:fontFamily="@font/fredoka_one"
+            android:textColor="@color/redColor"
+            android:layout_gravity="center_vertical"/>
+
+
+    </LinearLayout>
+</FrameLayout>

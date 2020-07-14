@@ -1,49 +1,48 @@
-package com.example.morninghelper.ui
+package com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock
 
-import android.Manifest
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
-import android.telephony.SmsManager
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.morninghelper.R
 import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
 import com.example.morninghelper.tools.setColor
-import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
-import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmInterface
-import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.shape.MaterialShapeUtils
 import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.chooser_dialog_layout.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
+import java.util.*
 
 
 class SetAlarmActivity : AppCompatActivity() {
+
+    companion object {
+        const val ALARM_REQUEST = 3
+        const val RINGTONE_REQUEST = 4
+    }
 
     private lateinit var selectedRingtone: Uri
     private lateinit var chooserAdapter: ChooseItemRecyclerViewAdapter
     private val chooseItems = mutableListOf<String>()
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
-
+    private lateinit var alarmModel: AlarmModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_alarm)
         init()
+        attachToolbar()
     }
 
     private fun init() {
@@ -51,27 +50,33 @@ class SetAlarmActivity : AppCompatActivity() {
             this,
             RingtoneManager.TYPE_ALARM
         )
-        timePicker.setIs24HourView(true)
-
-        onClickTime()
-        listeners()
         setRingtoneText(selectedRingtone)
-        attachToolbar()
+
+        timePickerAnimation()
+        listeners()
         initChooser()
     }
 
-    private fun onClickTime() {
+    private fun attachToolbar() {
+        setSupportActionBar(toolBar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        MaterialShapeUtils.setElevation(toolBar, 0f)
+        titleTV.setColor(
+            "Set Alarm",
+            ContextCompat.getColor(this, android.R.color.white)
+        )
+    }
+
+    private fun timePickerAnimation() {
+        timePicker.setIs24HourView(true)
         timePicker.setOnTimeChangedListener { _, hour, _ ->
             if (hour in 6..18)
                 motionLayout.transitionToStart()
             else
                 motionLayout.transitionToEnd()
         }
-
     }
-
-
-
 
     private fun accessRingtone() {
 
@@ -83,12 +88,12 @@ class SetAlarmActivity : AppCompatActivity() {
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Ringtone")
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, selectedRingtone)
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-        startActivityForResult(intent, 999)
+        startActivityForResult(intent, RINGTONE_REQUEST)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 999 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == RINGTONE_REQUEST && resultCode == Activity.RESULT_OK) {
             selectedRingtone =
                 data!!.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)!!
             setRingtoneText(selectedRingtone)
@@ -101,62 +106,67 @@ class SetAlarmActivity : AppCompatActivity() {
         selectedRingtoneTV.text = ringtone!!.getTitle(this)
     }
 
-    private fun attachToolbar() {
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
-        setSupportActionBar(toolBar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        MaterialShapeUtils.setElevation(toolBar, 0f)
-        titleTV.setColor(
-            "Set Alarm",
-            ContextCompat.getColor(this, android.R.color.white)
-        )
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home)
-            super.onBackPressed()
-        return true
-    }
 
     private fun listeners() {
         ringtoneCardView.setOnClickListener {
             accessRingtone()
         }
         saveAlarmButton.setOnClickListener {
-//            addNewAlarm()
+            setAlarm()
+            addNewAlarm()
         }
         repeatCardView.setOnClickListener {
             showChooser(arrayOf("Never", "Mon - Fri", "Daily"), R.id.repeatTextView)
         }
         dismissWithCardView.setOnClickListener {
-            showChooser(arrayOf("Default", "game1", "game2"), R.id.dismissWithTextView)
+            showChooser(arrayOf("Default", "Game"), R.id.dismissWithTextView)
         }
 
     }
 
 
-//    es sxva activitystvis mchirdeba da cota xani iyos
+    private fun addNewAlarm() {
+        val intent = Intent(this, AlarmClockFragment::class.java)
+        alarmModel = AlarmModel(
+            "${timePicker.hour}:${timePicker.minute}",
+            repeatTextView.text.toString(),
+            labelEditText.text.toString(),
+            selectedRingtone,
+            dismissWithTextView.text.toString(),
+            snoozeTimeEditText.text.toString(),
+            numberEditText.text.toString(),
+            messageEditText.text.toString(),
+            missedAlarmsEditText.text.toString(),
+            true
+        )
+        intent.putExtra("new alarm", alarmModel)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
 
-//    private fun checkForSmsPermission() {
-//        if (ActivityCompat.checkSelfPermission(
-//                this,
-//                Manifest.permission.SEND_SMS
-//            ) !=
-//            PackageManager.PERMISSION_GRANTED
-//        ) {
-//            Log.d("tag", "not granted")
-//            ActivityCompat.requestPermissions(
-//                this, arrayOf(Manifest.permission.SEND_SMS),
-//                1
-//            )
-//        } else {
-//            Log.d("tag", "granted")
-//            val obj = SmsManager.getDefault()
-//            obj.sendTextMessage("+995557277974", null, "welcome", null, null)
-//        }
-//    }
+    private fun setAlarm() {
+
+//        set alarm with time picker
+//        AlarmTools.setAlarm(
+//            this,
+//            selectedRingtone.toString(),
+//            dismissWithTextView.text.toString(),
+//            snoozeTimeEditText.text.toString(),
+//            timePicker,
+//            0
+//        )
+
+//        set Alarm with input time
+
+        AlarmTools.setAlarm(
+            selectedRingtone.toString(),
+            dismissWithTextView.text.toString(),
+            snoozeTimeEditText.text.toString(),
+            null,
+            10000
+        )
+    }
 
     private fun initChooser() {
         bottomSheetBehavior = BottomSheetBehavior.from<View>(bottomSheet)
@@ -167,7 +177,8 @@ class SetAlarmActivity : AppCompatActivity() {
                     repeatTextView.text = chooseItems[position]
                 else if (chooserAdapter.selectedViewId == R.id.dismissWithTextView)
                     dismissWithTextView.text = chooseItems[position]
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN }
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            }
         })
 
         chooseItemsRecyclerView.adapter = chooserAdapter
@@ -181,26 +192,11 @@ class SetAlarmActivity : AppCompatActivity() {
         chooserAdapter.notifyDataSetChanged()
     }
 
-//    private fun addNewAlarm(){
-//        val intent = Intent(this, AlarmClockFragment::class.java)
-//        val alarmModel = AlarmModel(
-//            "${timePicker.hour}:${timePicker.minute}",
-//            repeatTextView.text.toString(),
-//            labelEditText.text.toString(),
-//            selectedRingtone,
-//            dismissWithTextView.text.toString(),
-//            snoozeTimeEditText.text.toString(),
-//            numberEditText.text.toString(),
-//            messageEditText.text.toString(),
-//            missedAlarmsEditText.text.toString(),
-//            true
-//        )
-//        intent.putExtra("new alarm", alarmModel)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//        setResult(Activity.RESULT_OK, intent)
-//        finish()
-//    }
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home)
+            super.onBackPressed()
+        return true
+    }
 
 
 }
