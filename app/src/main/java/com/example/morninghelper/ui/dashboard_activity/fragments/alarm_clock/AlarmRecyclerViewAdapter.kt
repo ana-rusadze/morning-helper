@@ -7,12 +7,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morninghelper.R
+import com.example.morninghelper.room.alarms.Alarms
 import kotlinx.android.synthetic.main.alarm_clock_fragment.view.*
 import kotlinx.android.synthetic.main.alarms_recyclerview_layout.view.*
 
 
 class AlarmRecyclerViewAdapter(
-    private val alarm: MutableList<AlarmModel>,
+    private val alarm: MutableList<Alarms>,
     private val alarmInterface: AlarmInterface
 ) : RecyclerView.Adapter<AlarmRecyclerViewAdapter.ViewHolder>() {
 
@@ -36,7 +37,7 @@ class AlarmRecyclerViewAdapter(
                 }
 
             }
-            if (model.switchOn)
+            if (model.switchOn == 1)
                 itemView.alarmSwitch.isChecked = true
 
         }

@@ -12,8 +12,6 @@ import com.example.morninghelper.application.App
 import com.example.morninghelper.tools.extensions.setColor
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.daily_horoscope.HoroscopeFragment
-import com.example.morninghelper.ui.dashboard_activity.fragments.habits_tracker.RemindersFragment
-import com.example.morninghelper.ui.dashboard_activity.fragments.music.MusicFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.notes.NotesFragment
 import com.example.morninghelper.view_pager_adapter.ViewPagerAdapter
 import com.google.android.material.shape.MaterialShapeUtils.setElevation
@@ -28,12 +26,9 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private var fragmentsItems = mutableListOf<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         init()
-
     }
 
 
@@ -42,11 +37,11 @@ class DashboardActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out)
     }
 
+
+
     private fun init() {
         fragmentsItems.add(AlarmClockFragment())
-        fragmentsItems.add(RemindersFragment())
         fragmentsItems.add(NotesFragment())
-        fragmentsItems.add(MusicFragment())
         fragmentsItems.add(HoroscopeFragment())
         viewPagerAdapter =
             ViewPagerAdapter(
@@ -55,6 +50,12 @@ class DashboardActivity : AppCompatActivity() {
             )
         viewPager.adapter = viewPagerAdapter
         viewPagerAdapter.notifyDataSetChanged()
+        val currentPos = intent.extras?.getInt("currentPosition")
+        if (currentPos != null)
+            viewPager.currentItem = currentPos!!
+        else
+            viewPager.currentItem = 0
+
         addTabItem()
         attachToolbar()
     }
@@ -65,14 +66,9 @@ class DashboardActivity : AppCompatActivity() {
         tabLayout.addTab(
             tabLayout.newTab().setText(App.instance.getContext().getString(R.string.alarms))
         )
-        tabLayout.addTab(
-            tabLayout.newTab().setText(App.instance.getContext().getString(R.string.habits_tracker))
-        )
+
         tabLayout.addTab(
             tabLayout.newTab().setText(App.instance.getContext().getString(R.string.notes))
-        )
-        tabLayout.addTab(
-            tabLayout.newTab().setText(App.instance.getContext().getString(R.string.music))
         )
         tabLayout.addTab(
             tabLayout.newTab().setText(App.instance.getContext().getString(R.string.horoscope))

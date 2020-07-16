@@ -11,8 +11,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.morninghelper.R
+import com.example.morninghelper.application.App
 import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
+import com.example.morninghelper.room.AppDatabase
+import com.example.morninghelper.room.alarms.Alarms
 import com.example.morninghelper.tools.extensions.setColor
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmInterface
@@ -22,9 +26,19 @@ import com.google.android.material.shape.MaterialShapeUtils
 import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.chooser_dialog_layout.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class SetAlarmActivity : AppCompatActivity() {
+    private val db by lazy {
+        Room.databaseBuilder(
+            App.instance.getContext(),
+            AppDatabase::class.java, "database-name"
+        ).build()
+
+    }
 
     private lateinit var selectedRingtone: Uri
     private lateinit var chooserAdapter: ChooseItemRecyclerViewAdapter
@@ -114,7 +128,7 @@ class SetAlarmActivity : AppCompatActivity() {
             accessRingtone()
         }
         saveAlarmButton.setOnClickListener {
-//            addNewAlarm()
+         CoroutineScope(Dispatchers.Main).launch {  addNewAlarm() }
         }
         repeatCardView.setOnClickListener {
             showChooser(arrayOf("Never", "Mon - Fri", "Daily"), R.id.repeatTextView)
@@ -171,8 +185,8 @@ class SetAlarmActivity : AppCompatActivity() {
         chooserAdapter.notifyDataSetChanged()
     }
 
-//    private fun addNewAlarm(){
-//        val intent = Intent(this, AlarmClockFragment::class.java)
+    private suspend fun addNewAlarm(){
+        val intent = Intent(this, AlarmClockFragment::class.java)
 //        val alarmModel = AlarmModel(
 //            "${timePicker.hour}:${timePicker.minute}",
 //            repeatTextView.text.toString(),
@@ -185,11 +199,27 @@ class SetAlarmActivity : AppCompatActivity() {
 //            missedAlarmsEditText.text.toString(),
 //            true
 //        )
-//        intent.putExtra("new alarm", alarmModel)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//        setResult(Activity.RESULT_OK, intent)
-//        finish()
-//    }
+//
+        val alarmModel = Alarms()
+//        "${timePicker.hour}:${timePicker.minute}"
+        alarmModel.alarmTime = "hour:time"
+        alarmModel.repeat = repeatTextView.text.toString()
+        alarmModel.label = labelEditText.text.toString()
+        alarmModel.ringtone = selectedRingtone.toString()
+        alarmModel.dismissWith =  dismissWithTextView.text.toString()
+        alarmModel.snoozeTime = snoozeTimeEditText.text.toString()
+        alarmModel.number =  numberEditText.text.toString()
+        alarmModel.message = messageEditText.text.toString()
+        alarmModel.missedAlarms =  missedAlarmsEditText.text.toString()
+        alarmModel.switchOn = 1
+        db.alarmsDao().insertAll(alarmModel)
+        intent.putExtra("new alarm", alarmModel)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+
 
     private fun backToNotesFragment() {
         super.onBackPressed()

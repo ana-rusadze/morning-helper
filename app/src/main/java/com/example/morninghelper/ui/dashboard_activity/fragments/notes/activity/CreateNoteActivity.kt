@@ -23,8 +23,6 @@ import com.example.morninghelper.room.alarms.Alarms
 import com.example.morninghelper.tools.extensions.setColor
 import com.example.morninghelper.tools.extensions.setViewVisibility
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmInterface
-import com.example.morninghelper.ui.dashboard_activity.fragments.habits_tracker.ReminderModelClass
-import com.example.morninghelper.ui.dashboard_activity.fragments.habits_tracker.RemindersFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.shape.MaterialShapeUtils
 import kotlinx.android.synthetic.main.activity_create_note.*

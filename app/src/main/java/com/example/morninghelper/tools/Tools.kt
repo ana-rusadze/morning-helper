@@ -26,7 +26,7 @@ object Tools {
         dialog.window!!.attributes = params
         dialog.dialogTitle.text = title
         dialog.deleteButton.setOnClickListener {
-            customDialogInterface.delete(dialog)
+            customDialogInterface.delete()
             dialog.dismiss()
         }
         dialog.editButton.setOnClickListener {
@@ -87,31 +87,6 @@ object Tools {
         })
     }
 
-
-
-
-//
-//    fun <T> slideUpGesture(event: MotionEvent, activity: Activity, cls: Class<T>) {
-//
-//        val MIN_DISTANCE = 150
-//        var y2: Float = 0.0f
-//        var y1: Float = 0.0f
-//        when (event.actionMasked) {
-//            0 -> {
-//                y1 = event.y
-//            }
-//            1 -> {
-//                y2 = event.y
-//                val valueY: Float = y2 - y1
-//
-//                if (kotlin.math.abs(valueY) > MIN_DISTANCE && y2 < y1) {
-//                    val intent = Intent(activity, cls)
-//                    activity.startActivity(intent)
-//                    activity.overridePendingTransition(R.anim.slide_up, R.anim.slide_down)
-//                }
-//            }
-//        }
-//    }
 }
 
 
