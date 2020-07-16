@@ -10,11 +10,13 @@ import android.view.*
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.fragment_intro_welcome.view.*
 import androidx.viewpager.widget.ViewPager
+import com.airbnb.lottie.LottieAnimationView
 import com.example.morninghelper.R
 import com.example.morninghelper.dialog.CustomDialogInterface
 import com.example.morninghelper.ui.HomeActivity
 import com.example.morninghelper.ui.dashboard_activity.DashboardActivity
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.dialog_layout.*
 
 
@@ -41,8 +43,8 @@ object Tools {
 
     fun <T> startActivity(activity: Activity, cls: Class<T>, data: String?, clearTasks: Boolean) {
         val intent = Intent(activity, cls)
-        if (data!= null)
-            intent.putExtra("data",data)
+        if (data != null)
+            intent.putExtra("data", data)
         if (clearTasks)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         activity.startActivity(intent)
@@ -89,28 +91,20 @@ object Tools {
 
         })
     }
-//
-//    fun <T> slideUpGesture(event: MotionEvent, activity: Activity, cls: Class<T>) {
-//
-//        val MIN_DISTANCE = 150
-//        var y2: Float = 0.0f
-//        var y1: Float = 0.0f
-//        when (event.actionMasked) {
-//            0 -> {
-//                y1 = event.y
-//            }
-//            1 -> {
-//                y2 = event.y
-//                val valueY: Float = y2 - y1
-//
-//                if (kotlin.math.abs(valueY) > MIN_DISTANCE && y2 < y1) {
-//                    val intent = Intent(activity, cls)
-//                    activity.startActivity(intent)
-//                    activity.overridePendingTransition(R.anim.slide_up, R.anim.slide_down)
-//                }
-//            }
-//        }
-//    }
+
+    fun weatherAnimation(lottie: LottieAnimationView, main: String) {
+        when (main) {
+            "Clouds" -> lottie.setAnimation(R.raw.cloud)
+            "Thunderstorm" -> lottie.setAnimation(R.raw.thunder)
+            "Rain" -> lottie.setAnimation(R.raw.thunder)
+            "Clear" -> lottie.setAnimation(R.raw.sunny)
+            "Fog" -> lottie.setAnimation(R.raw.foggy)
+            "Drizzle" -> lottie.setAnimation(R.raw.rain)
+            "Snow" -> lottie.setAnimation(R.raw.snow)
+            else -> lottie.setAnimation(R.raw.partlycloudy)
+
+        }
+    }
 }
 
 

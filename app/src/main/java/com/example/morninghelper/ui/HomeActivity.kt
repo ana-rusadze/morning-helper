@@ -1,28 +1,23 @@
 package com.example.morninghelper.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.telephony.SmsManager
-import android.util.Log
 import android.util.Log.d
-import android.view.GestureDetector
 import android.view.MotionEvent
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-import androidx.core.app.ActivityCompat
-import androidx.core.view.GestureDetectorCompat
-
-import androidx.core.view.MotionEventCompat
 import com.example.morninghelper.R
-import com.example.morninghelper.application.App
+import com.example.morninghelper.networking.EndPoints
+import com.example.morninghelper.networking.HoroscopeCallback
+import com.example.morninghelper.networking.WeatherData
 import com.example.morninghelper.shared_preferences.AppSharedPreferences
 import com.example.morninghelper.tools.Tools
 import com.example.morninghelper.ui.dashboard_activity.DashboardActivity
 import kotlinx.android.synthetic.main.activity_home.*
-import java.util.jar.Manifest
+import org.json.JSONObject
+import kotlin.math.roundToInt
 
 
 class HomeActivity : AppCompatActivity() {
@@ -46,6 +41,7 @@ class HomeActivity : AppCompatActivity() {
         helloTextView.text =
             "Hello, ${AppSharedPreferences.getString(AppSharedPreferences.USER_NAME)}!"
         animations()
+        getCurrentWeather()
     }
 
     private fun animations() {
@@ -74,6 +70,57 @@ class HomeActivity : AppCompatActivity() {
         }
         return super.onTouchEvent(event)
     }
+
+    private fun getCurrentWeather() {
+
+        val parameters = mutableMapOf<String, String>()
+        parameters["appid"] = WeatherData.WEATHER_KEY
+        parameters["q"] = "tbilisi"
+        WeatherData.getRequest(EndPoints.CURRENT_WEATHER, parameters, object : HoroscopeCallback {
+            override fun onError(error: String, body: String) {
+                Toast.makeText(
+                    applicationContext,
+                    body,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onSuccess(response: String) {
+                d("response", response)
+                parseJSON(response)
+            }
+        })
+
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun parseJSON(response: String) {
+        val json = JSONObject(response)
+        if (json.has("weather")) {
+            val value = json.getJSONArray("weather")
+            d("weather", value.toString())
+            (0 until value.length()).forEach {
+                val obj = value.getJSONObject(it)
+                val desc = obj.getString("description")
+                val main = obj.getString("main")
+                Tools.weatherAnimation(weatherAnim, main)
+                tempDescription.text = desc
+            }
+
+        }
+
+        if (json.has("main")) {
+            val value = json.getJSONObject("main")
+            val temp = value.getString("temp")
+            val tempInC = (temp.toFloat() - 273.15).roundToInt()
+            tempTextView.text = "$tempInC°C"
+        }
+    }
+
+
+
+
 }
 
 

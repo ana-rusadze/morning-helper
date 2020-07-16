@@ -1,33 +1,111 @@
 package com.example.morninghelper.ui.dashboard_activity.fragments.news
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.util.Log.d
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.morninghelper.R
+import com.example.morninghelper.networking.EndPoints
+import com.example.morninghelper.networking.HoroscopeCallback
+import com.example.morninghelper.networking.NewsData
+import com.example.morninghelper.tools.setViewVisibility
+import com.example.morninghelper.ui.BaseFragment
+import kotlinx.android.synthetic.main.news_fragment.view.*
+import org.json.JSONObject
 
-class NewsFragment : Fragment() {
+class NewsFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() =
-            NewsFragment()
-    }
+    private var news = ArrayList<NewsModel>()
+    private lateinit var adapter: NewsRecyclerViewAdapter
+    private var pageCount = 1
 
-    private lateinit var viewModel: NewsViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+    override fun getLayoutResource() = R.layout.news_fragment
+    override fun start(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.news_fragment, container, false)
+    ) {
+        init()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NewsViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun init(){
+        rootView!!.loaderLayout.setViewVisibility(false)
+        adapter = NewsRecyclerViewAdapter(news)
+        rootView!!.newsRecyclerView.layoutManager = LinearLayoutManager(activity)
+        rootView!!.newsRecyclerView.adapter = adapter
+
+        getNewsData(pageCount.toString())
+
+        rootView!!.swipeRefreshLayout.setOnRefreshListener {
+            rootView!!.swipeRefreshLayout.isRefreshing = true
+            rootView!!.loaderLayout.setViewVisibility(true)
+            refresh()
+
+            Handler().postDelayed({
+                rootView!!.swipeRefreshLayout.isRefreshing = false
+                rootView!!.loaderLayout.setViewVisibility(false)
+            }, 2000)
+        }
     }
+
+    private fun refresh() {
+        if(pageCount != 4)
+            pageCount +=1
+        news.clear()
+        getNewsData(pageCount.toString())
+        adapter.notifyDataSetChanged()
+
+    }
+
+    private fun getNewsData(page: String){
+
+        val parameters = mutableMapOf<String, String>()
+        parameters["q"] = "art"
+//        parameters["category"] = "technology"
+        parameters["sortBy"] ="relevancy"
+//        parameters["pageSize"] = "50"
+        parameters["language"] = "en"
+//        parameters["country"] = "us"
+        parameters["page"] = page
+        parameters["apiKey"] = NewsData.NEWS_KEY
+        NewsData.getRequest(EndPoints.EVERYTHING, parameters, object : HoroscopeCallback {
+            override fun onError(error: String, body: String) {
+                Toast.makeText(
+                    rootView!!.context,
+                    "check your internet connection and try again!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onSuccess(response: String) {
+                parseJSON(response)
+            }
+        })
+
+    }
+
+
+    private fun parseJSON(response: String){
+        val json = JSONObject(response)
+        if (json.has("articles")) {
+            val articles = json.getJSONArray("articles")
+            d("result", articles.toString())
+            (0 until articles.length()).forEach {
+                val value = articles.getJSONObject(it)
+                val title = value.getString("title")
+                val description = value.getString("description")
+                val url = value.getString("url")
+                val imageUrl = value.getString("urlToImage")
+                val result = NewsModel(title, description,imageUrl,url)
+                news.add(result)
+            }
+        }
+        adapter.notifyDataSetChanged()
+    }
+
+
 
 }

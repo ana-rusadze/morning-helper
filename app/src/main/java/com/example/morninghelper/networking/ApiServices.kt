@@ -12,4 +12,6 @@ interface ApiServices {
         @QueryMap parameters: MutableMap<String, String>
     ): Call<String>?
 
-}
+
+    }
+

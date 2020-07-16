@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard_activity.fragments.news.NewsFragment">
 
     <TextView
+        android:paddingTop="23dp"
+        android:paddingBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:text="@string/read_the_news_from_all_around_the_world"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:fontFamily="@font/fredoka_one"
+        android:background="#DCAC502D"
+        android:textColor="@android:color/white"/>
 
-</FrameLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/news_recyclerview_layout" />
+
+            <TextView
+                android:id="@+id/loaderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/loading"
+                android:gravity="center"
+                android:background="@android:color/white"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fredoka_one"
+                android:textColor="@color/yellowColor"
+                android:textSize="16sp"
+                android:visibility="visible" />
+
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>
