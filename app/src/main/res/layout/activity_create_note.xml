@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,6 +20,7 @@
             style="@style/createNoteEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="50dp"
             android:drawableStart="@mipmap/ic_label"
             android:drawablePadding="10dp"
             android:hint="@string/title" />
@@ -34,30 +34,106 @@
             android:gravity="start"
             android:hint="@string/description" />
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/background_cream">
+
+            <ImageView
+                android:id="@+id/reminderIc"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/ic_reminder" />
+
+            <TextView
+                android:id="@+id/setReminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/fredoka_one"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="@string/click_to_set_reminder"
+                android:textColor="@color/redColor" />
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:id="@+id/colorChooserAnimation"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/background_cream"
+            android:padding="5dp">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="39dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/color_chooser" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/colorChooserRecyclerView"
-                android:scrollbars="none"
+            <TextView
+                android:id="@+id/DateTV"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:padding="10dp" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:text="@string/choose_date"
+                android:textColor="@color/redColor"
+                android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/repeatTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/fredoka_one"
+                android:padding="10dp"
+                android:text="@string/repeat"
+                android:textColor="@color/redColor"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_cream"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/hourET"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_cream"
+                android:hint="@string/hour"
+                android:inputType="number"
+                android:textColor="@color/redColor"
+                android:textColorHint="@color/redColor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colon"
+                android:textColor="@color/redColor" />
+
+            <EditText
+                android:id="@+id/minuteET"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_cream"
+                android:hint="@string/minute"
+                android:inputType="number"
+                android:textColor="@color/redColor"
+                android:textColorHint="@color/redColor" />
 
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+
+    <include
+        android:id="@+id/bottomSheetLayoutReminder"
+        layout="@layout/chooser_dialog_layout" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

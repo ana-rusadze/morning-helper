@@ -8,8 +8,17 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:src="@drawable/sloth_sleep"
+        android:src="@mipmap/pic_create_note_slot"
         android:background="@drawable/button_background_white"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hi_add_your_first_note"
+        android:fontFamily="@font/fredoka_one"
+        android:textSize="18sp"
+        android:textColor="@color/greenLight"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="top|center"/>
 
 </FrameLayout>

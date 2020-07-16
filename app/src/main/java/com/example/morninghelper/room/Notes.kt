@@ -10,8 +10,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Notes(
     @PrimaryKey(autoGenerate = true) val nid: Int = 0,
-    @ColumnInfo(name = "color") var color:Int? = 0,
+    @ColumnInfo(name = "color") var color: Int? = 0,
     @ColumnInfo(name = "title") var title: String? = "",
-    @ColumnInfo(name = "description") var description: String? = ""
+    @ColumnInfo(name = "description") var description: String? = "",
+    @ColumnInfo(name = "date") var date: String? = "",
+    @ColumnInfo(name = "time") var time: String? = "",
+    @ColumnInfo(name = "repeat") var repeat: String? = ""
 
-):Parcelable
+) : Parcelable

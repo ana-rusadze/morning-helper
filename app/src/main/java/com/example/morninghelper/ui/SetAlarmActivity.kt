@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.morninghelper.R
 import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
 import com.example.morninghelper.tools.extensions.setColor
+import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmInterface
+import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.shape.MaterialShapeUtils
 import kotlinx.android.synthetic.main.activity_set_alarm.*
@@ -61,8 +63,6 @@ class SetAlarmActivity : AppCompatActivity() {
     }
 
 
-
-
     private fun accessRingtone() {
 
         val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
@@ -92,8 +92,7 @@ class SetAlarmActivity : AppCompatActivity() {
     }
 
     private fun attachToolbar() {
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
+
         setSupportActionBar(toolBar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -157,7 +156,8 @@ class SetAlarmActivity : AppCompatActivity() {
                     repeatTextView.text = chooseItems[position]
                 else if (chooserAdapter.selectedViewId == R.id.dismissWithTextView)
                     dismissWithTextView.text = chooseItems[position]
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN }
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            }
         })
 
         chooseItemsRecyclerView.adapter = chooserAdapter
@@ -191,6 +191,13 @@ class SetAlarmActivity : AppCompatActivity() {
 //        finish()
 //    }
 
+    private fun backToNotesFragment() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out)
 
+    }
 
+    override fun onBackPressed() {
+        backToNotesFragment()
+    }
 }

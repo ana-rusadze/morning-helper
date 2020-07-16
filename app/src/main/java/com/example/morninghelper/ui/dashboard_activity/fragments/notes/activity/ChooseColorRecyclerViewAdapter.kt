@@ -10,7 +10,7 @@ import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.Ala
 import kotlinx.android.synthetic.main.color_chooser_item.view.*
 
 class ChooseColorRecyclerViewAdapter(
-    private val colorDataSet: ArrayList<Int>,
+    private val colorDataSet: MutableList<Int>,
     private val alarmInterface: AlarmInterface
 ) : RecyclerView.Adapter<ChooseColorRecyclerViewAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),

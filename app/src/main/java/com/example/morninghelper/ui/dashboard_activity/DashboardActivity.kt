@@ -12,7 +12,7 @@ import com.example.morninghelper.application.App
 import com.example.morninghelper.tools.extensions.setColor
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmClockFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.daily_horoscope.HoroscopeFragment
-import com.example.morninghelper.ui.dashboard_activity.fragments.habits_tracker.HabitsTrackerFragment
+import com.example.morninghelper.ui.dashboard_activity.fragments.habits_tracker.RemindersFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.music.MusicFragment
 import com.example.morninghelper.ui.dashboard_activity.fragments.notes.NotesFragment
 import com.example.morninghelper.view_pager_adapter.ViewPagerAdapter
@@ -36,9 +36,15 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out)
+    }
+
     private fun init() {
         fragmentsItems.add(AlarmClockFragment())
-        fragmentsItems.add(HabitsTrackerFragment())
+        fragmentsItems.add(RemindersFragment())
         fragmentsItems.add(NotesFragment())
         fragmentsItems.add(MusicFragment())
         fragmentsItems.add(HoroscopeFragment())
@@ -95,5 +101,6 @@ class DashboardActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.slothSkinColor)
         )
     }
+
 
 }

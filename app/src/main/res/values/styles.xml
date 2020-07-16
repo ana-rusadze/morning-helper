@@ -11,20 +11,33 @@
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
     <style name="seekBarStyle">
         <item name="android:minHeight">8dip</item>
         <item name="android:maxHeight">20dip</item>
     </style>
+
     <style name="createNoteEditTextStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHint">@android:color/white</item>
         <item name="android:padding">10dp</item>
         <item name="android:background">@drawable/create_note_edittext_background</item>
     </style>
+
     <style name="CircularReveal" parent="AppTheme">
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+<!--    <style name="Theme.Custom" parent="AppTheme">-->
+<!--        <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>-->
+<!--    </style>-->
+
+<!--    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">-->
+<!--        <item name="android:focusedMonthDateColor">@color/greenColor</item>-->
+<!--        <item name="android:weekNumberColor">@android:color/white</item>-->
+<!--        <item name="android:weekDayTextAppearance">@android:color/white</item>-->
+<!--        <item name="android:dateTextAppearance">@android:color/white</item>-->
+<!--    </style>-->
 
 
 </resources>

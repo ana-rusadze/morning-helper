@@ -13,8 +13,9 @@ import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.Ala
 
 class NotesRecyclerViewAdapter(private var dataSet: ArrayList<Notes>, private val alarmInterface: AlarmInterface) :
     RecyclerView.Adapter<NotesRecyclerViewAdapter.ViewHolder>() {
-    fun filterNoteList(filteredNotes: ArrayList<Notes>) {
-       dataSet = filteredNotes
+
+    fun filterNoteList(filteredNotes: ArrayList<Notes>){
+        dataSet = filteredNotes
         notifyDataSetChanged()
     }
     inner class ViewHolder(private val binding: NoteItemLayoutBinding) :
@@ -22,15 +23,19 @@ class NotesRecyclerViewAdapter(private var dataSet: ArrayList<Notes>, private va
         fun onBind() {
             val model = dataSet[adapterPosition]
             binding.noteItem = model
+            binding.root.setOnClickListener(this)
 
 
         }
 
         override fun onClick(v: View?) {
+
             alarmInterface.onClick(adapterPosition)
         }
 
+
     }
+    
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         DataBindingUtil.inflate(
@@ -43,29 +48,4 @@ class NotesRecyclerViewAdapter(private var dataSet: ArrayList<Notes>, private va
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind()
     }
-//  fun swipeDelete(recyclerView: RecyclerView){
-//       val itemTouchHelperCallback =
-//          object :
-//              ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-//              override fun onMove(
-//                  recyclerView: RecyclerView,
-//                  viewHolder: RecyclerView.ViewHolder,
-//                  target: RecyclerView.ViewHolder
-//              ): Boolean {
-//
-//
-//              }
-//
-//              override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//
-//              }
-//
-//          }
-//
-//      val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-//          itemTouchHelper.attachToRecyclerView(recyclerView)
-//
-
-//  }
-
 }

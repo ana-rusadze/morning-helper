@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greenColor"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard_activity.fragments.notes.activity.CreateNoteActivity">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/titleETEdit"
+            style="@style/createNoteEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableStart="@mipmap/ic_label"
+            android:drawablePadding="10dp"
+            android:hint="@string/title" />
+
+        <EditText
+            android:id="@+id/descriptionETEdit"
+            style="@style/createNoteEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:hint="@string/description" />
+
+
+
+    </LinearLayout>
+</LinearLayout>

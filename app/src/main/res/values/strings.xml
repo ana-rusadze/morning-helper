@@ -56,4 +56,16 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="createNote">Create Note</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="search_note">Search note</string>
+    <string name="hi_add_your_first_note">Hi, add your first note</string>
+    <string name="reminder">Reminder</string>
+    <string name="notify">notify</string>
+    <string name="colon">:</string>
+    <string name="hour">hour</string>
+    <string name="minute">minute</string>
+    <string name="choose_date">Choose date</string>
+    <string name="click_to_set_reminder">Click to set reminder</string>
 </resources>
