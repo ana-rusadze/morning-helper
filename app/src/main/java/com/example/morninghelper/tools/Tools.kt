@@ -8,7 +8,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AnimationUtils
-import kotlinx.android.synthetic.main.fragment_intro_welcome.view.*
 import androidx.viewpager.widget.ViewPager
 import com.airbnb.lottie.LottieAnimationView
 import com.example.morninghelper.R
@@ -32,14 +31,17 @@ object Tools {
         dialog.window!!.attributes = params
         dialog.dialogTitle.text = title
         dialog.deleteButton.setOnClickListener {
-            customDialogInterface.delete(dialog)
+            customDialogInterface.delete()
+            dialog.dismiss()
         }
         dialog.editButton.setOnClickListener {
             customDialogInterface.edit()
+            dialog.dismiss()
         }
         dialog.show()
 
     }
+
 
     fun <T> startActivity(activity: Activity, cls: Class<T>, data: String?, clearTasks: Boolean) {
         val intent = Intent(activity, cls)
@@ -47,8 +49,9 @@ object Tools {
             intent.putExtra("data", data)
         if (clearTasks)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        activity.startActivity(intent)
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        activity.startActivity(intent)
+
 
     }
 

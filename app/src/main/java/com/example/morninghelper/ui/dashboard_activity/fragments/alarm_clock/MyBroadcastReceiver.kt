@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.os.bundleOf
 
 
-class MyBroadcastReceiver : BroadcastReceiver(){
+class MyBroadcastReceiver : BroadcastReceiver() {
 
 //    override fun onReceive(p0: Context?, p1: Intent?) {
 ////        val intent = Intent(p0, AlarmRingingActivity::class.java)
@@ -31,8 +31,6 @@ class MyBroadcastReceiver : BroadcastReceiver(){
 
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(context, i, null)
-
-
 
 
 //        }else{

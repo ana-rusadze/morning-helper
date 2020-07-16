@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morninghelper.R
-import com.example.morninghelper.tools.setViewVisibility
+import com.example.morninghelper.tools.extensions.setViewVisibility
 import com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock.AlarmInterface
 import kotlinx.android.synthetic.main.game_recyclerview_layout.view.*
 import kotlin.properties.Delegates

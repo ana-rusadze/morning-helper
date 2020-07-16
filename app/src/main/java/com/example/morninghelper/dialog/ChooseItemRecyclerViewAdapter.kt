@@ -36,8 +36,6 @@ class ChooseItemRecyclerViewAdapter(
 
         }
 
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,7 +50,4 @@ class ChooseItemRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind()
     }
-
-
-
 }

@@ -14,7 +14,9 @@ import com.example.morninghelper.networking.WeatherData
 import com.example.morninghelper.tools.Tools
 import com.example.morninghelper.ui.BaseFragment
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.android.synthetic.main.weather_fragment.view.*
+import kotlinx.android.synthetic.main.weather_fragment.view.changeLocationEditText
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,20 +44,25 @@ class WeatherFragment : BaseFragment() {
         rootView!!.weatherRecyclerView.adapter = adapter
         getCurrentWeather("tbilisi")
 
+        rootView!!.searchLocation.setOnClickListener {
+            val location = changeLocationEditText.text.toString()
+            if(location.isEmpty()){
+                Toast.makeText(rootView!!.context, "the field must not be empty", Toast.LENGTH_SHORT).show()
+            }else{
+                getCurrentWeather(location)
+                rootView!!.locationWeather.text = location
+            }
+        }
+
     }
 
     private fun getCurrentWeather(location: String) {
-
+        weather.clear()
         val parameters = mutableMapOf<String, String>()
         parameters["appid"] = WeatherData.WEATHER_KEY
         parameters["q"] = location
         WeatherData.getRequest(EndPoints.CURRENT_WEATHER, parameters, object : HoroscopeCallback {
             override fun onError(error: String, body: String) {
-                Toast.makeText(
-                    rootView!!.context,
-                    body,
-                    Toast.LENGTH_SHORT
-                ).show()
             }
 
             override fun onSuccess(response: String) {

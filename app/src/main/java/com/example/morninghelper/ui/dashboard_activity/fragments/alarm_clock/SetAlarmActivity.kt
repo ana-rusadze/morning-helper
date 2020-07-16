@@ -1,9 +1,6 @@
 package com.example.morninghelper.ui.dashboard_activity.fragments.alarm_clock
 
 import android.app.Activity
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.media.Ringtone
 import android.media.RingtoneManager
@@ -16,13 +13,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.morninghelper.R
 import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
-import com.example.morninghelper.tools.setColor
+import com.example.morninghelper.tools.extensions.setColor
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.shape.MaterialShapeUtils
 import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.chooser_dialog_layout.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
-import java.util.*
 
 
 class SetAlarmActivity : AppCompatActivity() {
@@ -106,6 +102,12 @@ class SetAlarmActivity : AppCompatActivity() {
         selectedRingtoneTV.text = ringtone!!.getTitle(this)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home)
+            super.onBackPressed()
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out)
+        return true
+    }
 
     private fun listeners() {
         ringtoneCardView.setOnClickListener {
@@ -192,11 +194,7 @@ class SetAlarmActivity : AppCompatActivity() {
         chooserAdapter.notifyDataSetChanged()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home)
-            super.onBackPressed()
-        return true
-    }
+
 
 
 }

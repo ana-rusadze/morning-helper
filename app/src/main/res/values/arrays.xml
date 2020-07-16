@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="preloaded_fonts">preloadeed_fonts</string-array>
+    <string-array name="colors">
+        <item>@color/yellowColor</item>
+        <item>@color/brown</item>
+        <item>@color/creamColor</item>
+        <item>@color/greenColor</item>
+        <item>@color/redColor</item>
+    </string-array>
 </resources>

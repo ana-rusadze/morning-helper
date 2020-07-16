@@ -5,9 +5,6 @@ import android.view.View
 import com.example.morninghelper.R
 import com.example.morninghelper.application.App
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,7 +37,7 @@ object HoroscopeDataLoader {
         parameters: MutableMap<String, String>,
         callBack: HoroscopeCallback
     ) {
-        loaderView!!.visibility = View.GONE
+        loaderView!!.visibility = View.VISIBLE
         val call = service.getRequest(path, parameters)
         call!!.enqueue(
             onCallBack(

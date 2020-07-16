@@ -82,7 +82,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/alarmsCardView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     app:cardCornerRadius="10dp"
@@ -97,19 +97,14 @@
                         android:padding="10dp">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:fontFamily="@font/fredoka_one"
                             android:text="@string/upcoming_alarms"
+                            android:gravity="center_vertical"
                             android:textColor="@color/greenColor"
                             android:textSize="18sp" />
 
-                        <TextView
-                            android:id="@+id/upcomingAlarmTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="13:00 TUE"
-                            android:textSize="14sp" />
 
 
                     </LinearLayout>
@@ -131,7 +126,7 @@
                         android:background="#E7B34D"
                         android:fontFamily="@font/fredoka_one"
                         android:padding="10dp"
-                        android:text="News"
+                        android:text="@string/news"
                         android:textColor="@color/redLightColor"
                         android:textSize="18sp" />
 
@@ -172,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/fredoka_one"
                         android:padding="10dp"
-                        android:text="@string/habit_tracker"
+                        android:text="@string/notes"
                         android:textSize="18sp" />
 
 
@@ -256,7 +251,7 @@
                         android:gravity="start"
                         android:maxLines="1"
                         android:padding="3dp"
-                        android:text="Weather"
+                        android:text="@string/weather"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 

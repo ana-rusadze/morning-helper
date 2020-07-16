@@ -1,4 +1,5 @@
-package com.example.morninghelper.tools
+
+package com.example.morninghelper.tools.extensions
 
 import android.text.Spannable
 import android.text.SpannableString

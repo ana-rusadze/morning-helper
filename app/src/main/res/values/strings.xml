@@ -20,7 +20,7 @@
     <string name="your_name">your name</string>
     <string name="enter_your_name_and_let_s_begin">Enter your name and let\'s begin!</string>
     <string name="alarms">Alarms</string>
-    <string name="news">News</string>
+    <string name="notes">Notes</string>
     <string name="habits_tracker">Habits tracker</string>
     <string name="music">Music</string>
     <string name="morning_lower_case">morning</string>
@@ -50,10 +50,6 @@
     <string name="_5_min">5 min</string>
     <string name="set_a_new_alarm_with_interesting_options">Set a new alarm with interesting options</string>
     <string name="no_alarms_yet">No alarms yet</string>
-    <string name="off">OFF</string>
-    <string name="on">ON</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
     <string name="alarm_options">Alarm Options</string>
     <string name="dismiss">Dismiss</string>
     <string name="snooze">Snooze</string>
@@ -61,9 +57,26 @@
     <string name="_5">5</string>
     <string name="min">min</string>
     <string name="see_more">See More</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="read_the_news_from_all_around_the_world">Read the news from all around the world</string>
     <string name="click_here_to_get_location">Click here to get location</string>
     <string name="tbilisi_georgia">Tbilisi, Georgia</string>
     <string name="change_location">Change Location</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="createNote">Create Note</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="search_note">Search note</string>
+    <string name="hi_add_your_first_note">Hi, add your first note</string>
+    <string name="reminder">Reminder</string>
+    <string name="notify">notify</string>
+    <string name="colon">:</string>
+    <string name="hour">hour</string>
+    <string name="minute">minute</string>
+    <string name="choose_date">Choose date</string>
+    <string name="click_to_set_reminder">Click to set reminder</string>
+    <string name="news">News</string>
+    <string name="weather">Weather</string>
 </resources>

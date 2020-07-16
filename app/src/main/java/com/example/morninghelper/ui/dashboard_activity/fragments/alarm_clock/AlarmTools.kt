@@ -12,6 +12,7 @@ import com.example.morninghelper.application.App
 import com.example.morninghelper.tools.Tools
 import com.example.morninghelper.ui.HomeActivity
 import kotlinx.android.synthetic.main.activity_set_alarm.*
+import java.time.DayOfWeek
 import java.util.*
 
 object AlarmTools {
@@ -41,6 +42,7 @@ object AlarmTools {
         inputTime: Int
     ) {
 
+
         intent.putExtra("ringtone", ringtone)
         intent.putExtra("dismiss", dismissWith)
         intent.putExtra("snoozeTime", snoozeTime)
@@ -53,7 +55,7 @@ object AlarmTools {
         }
     }
 
-    private fun alarmWithTimePicker(hour: Int, minute: Int) {
+    fun alarmWithTimePicker(hour: Int, minute: Int) {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         calendar.set(Calendar.HOUR_OF_DAY, hour)
@@ -73,6 +75,13 @@ object AlarmTools {
     fun finishAlarm(context: Context, toastString: String, activity: Activity) {
         Toast.makeText(context, toastString, Toast.LENGTH_LONG).show()
         Tools.startActivity(activity, HomeActivity::class.java, null, true)
+    }
+
+    fun setReminder(hour:Int, minute: Int){
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.set(Calendar.YEAR, Calendar.MONTH, Calendar.DATE, hour, minute)
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 
 }

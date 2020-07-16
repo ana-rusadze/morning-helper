@@ -11,7 +11,7 @@ import com.example.morninghelper.R
 import com.example.morninghelper.networking.EndPoints
 import com.example.morninghelper.networking.HoroscopeCallback
 import com.example.morninghelper.networking.NewsData
-import com.example.morninghelper.tools.setViewVisibility
+import com.example.morninghelper.tools.extensions.setViewVisibility
 import com.example.morninghelper.ui.BaseFragment
 import kotlinx.android.synthetic.main.news_fragment.view.*
 import org.json.JSONObject
@@ -64,11 +64,8 @@ class NewsFragment : BaseFragment() {
 
         val parameters = mutableMapOf<String, String>()
         parameters["q"] = "art"
-//        parameters["category"] = "technology"
         parameters["sortBy"] ="relevancy"
-//        parameters["pageSize"] = "50"
         parameters["language"] = "en"
-//        parameters["country"] = "us"
         parameters["page"] = page
         parameters["apiKey"] = NewsData.NEWS_KEY
         NewsData.getRequest(EndPoints.EVERYTHING, parameters, object : HoroscopeCallback {

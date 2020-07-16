@@ -13,7 +13,7 @@ import com.example.morninghelper.R
 import com.example.morninghelper.dialog.CustomDialogInterface
 import com.example.morninghelper.shared_preferences.AppSharedPreferences
 import com.example.morninghelper.tools.Tools
-import com.example.morninghelper.tools.setViewVisibility
+import com.example.morninghelper.tools.extensions.setViewVisibility
 import com.example.morninghelper.ui.BaseFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -54,9 +54,8 @@ class AlarmClockFragment : BaseFragment() {
         adapter = AlarmRecyclerViewAdapter(listOfAlarms, object : AlarmInterface {
             override fun onClick(position: Int) {
                 Tools.initDialog(rootView!!.context, "Alarm Options", object: CustomDialogInterface{
-                    override fun delete(dialog: Dialog) {
+                    override fun delete() {
                         listOfAlarms.removeAt(position)
-                        dialog.dismiss()
                         Toast.makeText(activity, "alarm removed successfully", Toast.LENGTH_SHORT).show()
                         noAlarms()
                         adapter.notifyItemRemoved(position)

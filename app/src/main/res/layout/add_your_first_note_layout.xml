@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@android:color/transparent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/button_background_white"/>
+
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/pic_create_note_slot" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hi_add_your_first_note"
+        android:fontFamily="@font/fredoka_one"
+        android:textSize="18sp"
+        android:textColor="@color/greenLight"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="top|center"/>
+
+</FrameLayout>
