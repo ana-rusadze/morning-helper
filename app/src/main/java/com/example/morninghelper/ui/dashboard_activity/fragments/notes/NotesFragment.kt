@@ -41,8 +41,6 @@ import kotlin.collections.ArrayList
 class NotesFragment : BaseFragment() {
 
     companion object {
-        fun newInstance() =
-            NotesFragment()
 
         const val REQUEST_CODE_CREATE = 20
         const val REQUEST_CODE_EDIT = 21
@@ -90,7 +88,7 @@ class NotesFragment : BaseFragment() {
             override fun onClick(position: Int) {
                 Tools.initDialog(
                     activity as DashboardActivity,
-                    "change note condition",
+                    "Notes` options",
                     object : CustomDialogInterface {
                         override fun delete() {
                             CoroutineScope(Dispatchers.Main).launch { delete(position) }
@@ -186,17 +184,17 @@ class NotesFragment : BaseFragment() {
     private suspend fun delete(position: Int) {
         val note = noteItems[position]
         d("logPosition", position.toString())
-        noteItems.remove(note)
         db.notesDao().delete(note)
         noNotes()
+        noteItems.remove(note)
         notesRecyclerViewAdapter.notifyItemRemoved(position)
     }
 
 
     private fun editNote(notes: Notes, position: Int) {
         val intent = Intent(App.instance.getContext(), EditNoteActivity::class.java)
-        noteItems.remove(notes)
         editedNotePos = position
+        noteItems.remove(notes)
         intent.putExtra("editableNote", notes)
         startActivityForResult(intent, REQUEST_CODE_EDIT)
 

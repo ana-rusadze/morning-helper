@@ -12,6 +12,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morninghelper.R
+
+import com.example.morninghelper.room.alarms.Alarms
+import kotlinx.android.synthetic.main.alarm_clock_fragment.view.*
 import kotlinx.android.synthetic.main.alarms_recyclerview_layout.view.*
 
 

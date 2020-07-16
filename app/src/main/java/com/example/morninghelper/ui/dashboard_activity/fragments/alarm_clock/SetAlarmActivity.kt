@@ -11,14 +11,21 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.morninghelper.R
+import com.example.morninghelper.application.App
 import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
+import com.example.morninghelper.room.AppDatabase
+import com.example.morninghelper.room.alarms.Alarms
 import com.example.morninghelper.tools.extensions.setColor
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.shape.MaterialShapeUtils
 import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.chooser_dialog_layout.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class SetAlarmActivity : AppCompatActivity() {
@@ -115,7 +122,9 @@ class SetAlarmActivity : AppCompatActivity() {
         }
         saveAlarmButton.setOnClickListener {
             setAlarm()
-            addNewAlarm()
+//            addNewAlarm()
+         CoroutineScope(Dispatchers.Main).launch {  addNewAlarm() }
+
         }
         repeatCardView.setOnClickListener {
             showChooser(arrayOf("Never", "Mon - Fri", "Daily"), R.id.repeatTextView)
@@ -126,26 +135,26 @@ class SetAlarmActivity : AppCompatActivity() {
 
     }
 
-
-    private fun addNewAlarm() {
-        val intent = Intent(this, AlarmClockFragment::class.java)
-        alarmModel = AlarmModel(
-            "${timePicker.hour}:${timePicker.minute}",
-            repeatTextView.text.toString(),
-            labelEditText.text.toString(),
-            selectedRingtone,
-            dismissWithTextView.text.toString(),
-            snoozeTimeEditText.text.toString(),
-            numberEditText.text.toString(),
-            messageEditText.text.toString(),
-            missedAlarmsEditText.text.toString(),
-            true
-        )
-        intent.putExtra("new alarm", alarmModel)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        setResult(Activity.RESULT_OK, intent)
-        finish()
-    }
+//
+//    private fun addNewAlarm() {
+//        val intent = Intent(this, AlarmClockFragment::class.java)
+//        alarmModel = AlarmModel(
+//            "${timePicker.hour}:${timePicker.minute}",
+//            repeatTextView.text.toString(),
+//            labelEditText.text.toString(),
+//            selectedRingtone,
+//            dismissWithTextView.text.toString(),
+//            snoozeTimeEditText.text.toString(),
+//            numberEditText.text.toString(),
+//            messageEditText.text.toString(),
+//            missedAlarmsEditText.text.toString(),
+//            true
+//        )
+//        intent.putExtra("new alarm", alarmModel)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//        setResult(Activity.RESULT_OK, intent)
+//        finish()
+//    }
 
     private fun setAlarm() {
 
@@ -193,6 +202,29 @@ class SetAlarmActivity : AppCompatActivity() {
         chooseItems.addAll(items)
         chooserAdapter.notifyDataSetChanged()
     }
+
+
+    private  fun addNewAlarm(){
+        val intent = Intent(this, AlarmClockFragment::class.java)
+        val alarmModel = AlarmModel(
+            "${timePicker.hour}:${timePicker.minute}",
+            repeatTextView.text.toString(),
+            labelEditText.text.toString(),
+            selectedRingtone,
+            dismissWithTextView.text.toString(),
+            snoozeTimeEditText.text.toString(),
+            numberEditText.text.toString(),
+            messageEditText.text.toString(),
+            missedAlarmsEditText.text.toString(),
+            true
+        )
+
+        intent.putExtra("new alarm", alarmModel)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
 
 
 

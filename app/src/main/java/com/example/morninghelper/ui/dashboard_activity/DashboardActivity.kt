@@ -30,7 +30,6 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         init()
-
     }
 
 
@@ -47,6 +46,12 @@ class DashboardActivity : AppCompatActivity() {
             )
         viewPager.adapter = viewPagerAdapter
         viewPagerAdapter.notifyDataSetChanged()
+        val currentPos = intent.extras?.getInt("currentPosition")
+        if (currentPos != null)
+            viewPager.currentItem = currentPos!!
+        else
+            viewPager.currentItem = 0
+
         addTabItem()
         attachToolbar()
     }
@@ -60,6 +65,7 @@ class DashboardActivity : AppCompatActivity() {
         tabLayout.addTab(
             tabLayout.newTab().setText(App.instance.getContext().getString(R.string.news))
         )
+
         tabLayout.addTab(
             tabLayout.newTab().setText(App.instance.getContext().getString(R.string.weather))
         )

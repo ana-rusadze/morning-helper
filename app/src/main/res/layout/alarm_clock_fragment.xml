@@ -83,12 +83,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addAlarmButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         app:borderWidth="0dp"
+        android:src="@drawable/ic_plus"
         android:background="@color/redLightColor"
         android:backgroundTint="@color/redLightColor" />
 

@@ -5,22 +5,31 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log.d
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-import com.example.morninghelper.R
+
 import com.example.morninghelper.networking.EndPoints
 import com.example.morninghelper.networking.HoroscopeCallback
 import com.example.morninghelper.networking.WeatherData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
+import com.example.morninghelper.R
+import com.example.morninghelper.application.App
+import com.example.morninghelper.room.AppDatabase
 import com.example.morninghelper.shared_preferences.AppSharedPreferences
 import com.example.morninghelper.tools.Tools
 import com.example.morninghelper.ui.dashboard_activity.DashboardActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import org.json.JSONObject
 import kotlin.math.roundToInt
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     var y2: Float = 0.0f
     var y1: Float = 0.0f
@@ -29,15 +38,31 @@ class HomeActivity : AppCompatActivity() {
         const val MIN_DISTANCE = 150
     }
 
+    private val db by lazy {
+        Room.databaseBuilder(
+            App.instance.getContext(),
+            AppDatabase::class.java, "database-name"
+        ).build()
+
+    }
+
+    private var latestNotesList = ArrayList<String>()
+    private lateinit var latestNotesRecyclerView: LatestNotesRecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         init()
+        CoroutineScope(Dispatchers.Main).launch { getLatestNotes() }
+        initRecyclerView()
+
 
     }
 
 
     private fun init() {
+        alarmsTV.setOnClickListener(this)
+        newsTV.setOnClickListener(this)
+        horoscopeTV.setOnClickListener(this)
         helloTextView.text =
             "Hello, ${AppSharedPreferences.getString(AppSharedPreferences.USER_NAME)}!"
         animations()
@@ -118,10 +143,47 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun onClickItem(position: Int) {
+        val intent = Intent(this, DashboardActivity::class.java)
+        intent.putExtra("currentPosition", position)
+        startActivity(intent)
+    }
 
 
+    override fun onClick(p0: View?) {
+        when (p0!!.id) {
+            R.id.alarmsTV -> onClickItem(0)
+            R.id.newsTV -> onClickItem(1)
+            R.id.weatherCardView ->onClickItem(2)
+            R.id.horoscopeTV -> onClickItem(3)
+            R.id.notesCardView -> onClickItem(4)
 
+        }
+
+    }
+
+    private fun initRecyclerView() {
+        latestNoteRecyclerView.layoutManager = LinearLayoutManager(this)
+        latestNotesRecyclerView = LatestNotesRecyclerView(latestNotesList)
+        latestNoteRecyclerView.adapter = latestNotesRecyclerView
+        latestNotesRecyclerView.notifyDataSetChanged()
+
+    }
+
+
+    private suspend fun getLatestNotes() {
+        val notes = db.notesDao().getAll()
+        if (notes.isNotEmpty()) {
+            val latestNotes = notes.take(5)
+            for (i in latestNotes)
+                latestNotesList.add(i.title!!)
+            latestNotesRecyclerView.notifyDataSetChanged()
+        }
+
+
+    }
 }
+
 
 
 
