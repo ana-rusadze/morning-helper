@@ -12,7 +12,7 @@
         android:layout_height="300dp"
         android:padding="40dp"
         android:layout_gravity="center"
-        android:background="@drawable/button_background_white"
+        android:background="@drawable/white_circle"
         android:src="@drawable/sloth_computer"
         android:contentDescription="@string/welcome_text" />
 

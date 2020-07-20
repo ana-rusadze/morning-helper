@@ -46,6 +46,7 @@ class SetAlarmActivity : AppCompatActivity() {
         setContentView(R.layout.activity_set_alarm)
         init()
         attachToolbar()
+        timePickerAnim()
     }
 
     private fun init() {
@@ -55,9 +56,13 @@ class SetAlarmActivity : AppCompatActivity() {
         )
         setRingtoneText(selectedRingtone)
 
-        timePickerAnimation()
         listeners()
         initChooser()
+
+
+        timePicker.setOnTimeChangedListener { _, _, _ ->
+            timePickerAnim()
+        }
     }
 
     private fun attachToolbar() {
@@ -71,14 +76,12 @@ class SetAlarmActivity : AppCompatActivity() {
         )
     }
 
-    private fun timePickerAnimation() {
+    private fun timePickerAnim(){
         timePicker.setIs24HourView(true)
-        timePicker.setOnTimeChangedListener { _, hour, _ ->
-            if (hour in 6..18)
-                motionLayout.transitionToStart()
-            else
-                motionLayout.transitionToEnd()
-        }
+        if (timePicker.hour in 6..18)
+            motionLayout.transitionToStart()
+        else
+            motionLayout.transitionToEnd()
     }
 
     private fun accessRingtone() {
@@ -112,7 +115,6 @@ class SetAlarmActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home)
             super.onBackPressed()
-        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out)
         return true
     }
 
@@ -122,8 +124,7 @@ class SetAlarmActivity : AppCompatActivity() {
         }
         saveAlarmButton.setOnClickListener {
             setAlarm()
-//            addNewAlarm()
-         CoroutineScope(Dispatchers.Main).launch {  addNewAlarm() }
+            addNewAlarm()
 
         }
         repeatCardView.setOnClickListener {
@@ -134,27 +135,6 @@ class SetAlarmActivity : AppCompatActivity() {
         }
 
     }
-
-//
-//    private fun addNewAlarm() {
-//        val intent = Intent(this, AlarmClockFragment::class.java)
-//        alarmModel = AlarmModel(
-//            "${timePicker.hour}:${timePicker.minute}",
-//            repeatTextView.text.toString(),
-//            labelEditText.text.toString(),
-//            selectedRingtone,
-//            dismissWithTextView.text.toString(),
-//            snoozeTimeEditText.text.toString(),
-//            numberEditText.text.toString(),
-//            messageEditText.text.toString(),
-//            missedAlarmsEditText.text.toString(),
-//            true
-//        )
-//        intent.putExtra("new alarm", alarmModel)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//        setResult(Activity.RESULT_OK, intent)
-//        finish()
-//    }
 
     private fun setAlarm() {
 

@@ -11,23 +11,18 @@
     <string name="morning">Morning</string>
     <string name="helper">Helper</string>
     <string name="horoscopes">Horoscopes</string>
-    <string name="habit_tracker">Habit Tracker</string>
     <string name="upcoming_alarms">Upcoming alarms</string>
     <string name="to_do_list">To Do List</string>
     <string name="swipe_to_see_more">Swipe up to see more</string>
-    <string name="hello_name">Hello, Name!</string>
     <string name="have_a_good_day">Have a good day..</string>
     <string name="your_name">your name</string>
     <string name="enter_your_name_and_let_s_begin">Enter your name and let\'s begin!</string>
     <string name="alarms">Alarms</string>
     <string name="notes">Notes</string>
-    <string name="habits_tracker">Habits tracker</string>
     <string name="morning_lower_case">morning</string>
-    <string name="horoscope_domain">https://horoscope5.p.rapidapi.com/general/</string>
     <string name="incorrect_request">Incorrect Request</string>
     <string name="an_error_occurred_please_try_again">an error occurred please try again</string>
     <string name="horoscope">Horoscope</string>
-    <string name="horoscope_key">7fcf43cdf4msh33c143365e50c90p19b324jsn4f4b2993b5f7</string>
     <string name="your_daily_horoscope">Read your daily horoscope</string>
     <string name="search_your_sign_here">search your sign here</string>
     <string name="repeat">Repeat</string>
@@ -46,7 +41,6 @@
     <string name="enter_a_message">Enter a message</string>
     <string name="missed_alarms">Missed alarms</string>
     <string name="after_how_many_alarms">after how many alarms</string>
-    <string name="_5_min">5 min</string>
     <string name="set_a_new_alarm_with_interesting_options">Set a new alarm with interesting options</string>
     <string name="no_alarms_yet">No alarms yet</string>
     <string name="alarm_options">Alarm Options</string>
@@ -58,7 +52,6 @@
     <string name="see_more">See More</string>
     <string name="loading">Loading…</string>
     <string name="read_the_news_from_all_around_the_world">Read the news from all around the world</string>
-    <string name="click_here_to_get_location">Click here to get location</string>
     <string name="tbilisi_georgia">Tbilisi, Georgia</string>
     <string name="change_location">Change Location</string>
     <string name="title">Title</string>
@@ -75,7 +68,9 @@
     <string name="hour">hour</string>
     <string name="minute">minute</string>
     <string name="choose_date">Choose date</string>
-    <string name="click_to_set_reminder">Click to set reminder</string>
     <string name="news">News</string>
     <string name="weather">Weather</string>
+    <string name="change_your_name">Change your name</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="please_enter_a_location">Please enter a location</string>
 </resources>

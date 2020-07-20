@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@drawable/white_rectangle_bg"
+        android:background="@drawable/white_rectangle_round_corners"
         android:orientation="vertical"
         android:padding="25dp">
 

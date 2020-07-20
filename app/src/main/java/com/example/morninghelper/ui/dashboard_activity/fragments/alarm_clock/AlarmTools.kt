@@ -55,7 +55,7 @@ object AlarmTools {
         }
     }
 
-    fun alarmWithTimePicker(hour: Int, minute: Int) {
+    private fun alarmWithTimePicker(hour: Int, minute: Int) {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         calendar.set(Calendar.HOUR_OF_DAY, hour)
@@ -67,21 +67,21 @@ object AlarmTools {
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, pendingIntent)
     }
 
-    fun cancelAlarm() {
-        alarmManager.cancel(pendingIntent)
-    }
-
 
     fun finishAlarm(context: Context, toastString: String, activity: Activity) {
         Toast.makeText(context, toastString, Toast.LENGTH_LONG).show()
         Tools.startActivity(activity, HomeActivity::class.java, null, true)
     }
 
-    fun setReminder(hour:Int, minute: Int){
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
-        calendar.set(Calendar.YEAR, Calendar.MONTH, Calendar.DATE, hour, minute)
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+    fun cancelAlarm() {
+        alarmManager.cancel(pendingIntent)
     }
+
+//    fun setReminder(hour:Int, minute: Int){
+//        val calendar = Calendar.getInstance()
+//        calendar.timeInMillis = System.currentTimeMillis()
+//        calendar.set(Calendar.YEAR, Calendar.MONTH, Calendar.DATE, hour, minute)
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+//    }
 
 }

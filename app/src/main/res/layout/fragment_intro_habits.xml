@@ -11,7 +11,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:background="@drawable/button_background_white"
+        android:background="@drawable/white_circle"
         android:contentDescription="@string/keep_track_habits"
         android:padding="10dp"
         android:src="@drawable/sloth_tea" />

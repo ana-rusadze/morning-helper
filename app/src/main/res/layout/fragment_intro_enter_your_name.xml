@@ -11,7 +11,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:background="@drawable/button_background_white"
+        android:background="@drawable/white_circle"
         android:contentDescription="@string/set_alarm"
         android:padding="40dp"
         android:src="@drawable/sloth_well_done" />
@@ -35,7 +35,7 @@
         android:layout_gravity="end"
         android:gravity="center"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/background_cream"
+        android:background="@drawable/cream_rectangle_background"
         android:hint="Name here"
         android:textStyle="bold"
         android:padding="10dp"

@@ -12,7 +12,7 @@
         android:id="@+id/dialogTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/yellow_background"
+        android:background="@drawable/yellow_rectangle_round_corners"
         android:fontFamily="@font/fredoka_one"
         android:gravity="center"
         android:padding="10dp"

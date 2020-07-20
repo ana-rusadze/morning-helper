@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 import com.example.morninghelper.networking.EndPoints
-import com.example.morninghelper.networking.HoroscopeCallback
+import com.example.morninghelper.networking.ApiCallback
 import com.example.morninghelper.networking.WeatherData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
@@ -101,7 +101,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         val parameters = mutableMapOf<String, String>()
         parameters["appid"] = WeatherData.WEATHER_KEY
         parameters["q"] = "tbilisi"
-        WeatherData.getRequest(EndPoints.CURRENT_WEATHER, parameters, object : HoroscopeCallback {
+        WeatherData.getRequest(EndPoints.CURRENT_WEATHER, parameters, object : ApiCallback {
             override fun onError(error: String, body: String) {
                 Toast.makeText(
                     applicationContext,

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="horoscope_key">7fcf43cdf4msh33c143365e50c90p19b324jsn4f4b2993b5f7</string>
+    <string name="horoscope_domain">https://horoscope5.p.rapidapi.com/general/</string>
+</resources>

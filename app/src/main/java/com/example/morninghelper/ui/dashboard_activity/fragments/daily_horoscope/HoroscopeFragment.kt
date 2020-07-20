@@ -2,6 +2,7 @@ package com.example.morninghelper.ui.dashboard_activity.fragments.daily_horoscop
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.example.morninghelper.R
 import com.example.morninghelper.application.App
 import com.example.morninghelper.dialog.ChooseItemRecyclerViewAdapter
 import com.example.morninghelper.networking.EndPoints
-import com.example.morninghelper.networking.HoroscopeCallback
+import com.example.morninghelper.networking.ApiCallback
 import com.example.morninghelper.networking.HoroscopeDataLoader
 import com.example.morninghelper.tools.Tools
 import com.example.morninghelper.tools.extensions.setViewVisibility
@@ -31,10 +32,6 @@ import java.util.*
 
 
 class HoroscopeFragment : BaseFragment() {
-
-    companion object {
-        fun newInstance() = HoroscopeFragment()
-    }
 
     private lateinit var doubleBounce: Sprite
     private lateinit var chooserAdapter: ChooseItemRecyclerViewAdapter
@@ -94,39 +91,37 @@ class HoroscopeFragment : BaseFragment() {
 
 
     private fun getHoroscope(hSign: String) {
-        rootView!!.horoscopeDescriptionTV.setViewVisibility(false)
+        rootView!!.spinKitLoaderProgressBar.setViewVisibility(true)
         rootView!!.horoscopeDescriptionCV.setViewVisibility(false)
         val parameters = mutableMapOf<String, String>()
         if (hSign.isNotEmpty()) {
+            rootView!!.horoscopeDescriptionTV.text = ""
             parameters["sign"] = hSign
             parameters["date"] = getCurrentDate()
-            if (rootView!!.spinKitLoaderProgressBar.visibility != View.VISIBLE)
-                rootView!!.horoscopeDescriptionCV.setViewVisibility(false)
-
-            rootView!!.spinKitLoaderProgressBar.visibility = View.VISIBLE
 
             HoroscopeDataLoader.getRequest(
-                rootView!!.spinKitLoaderProgressBar,
                 EndPoints.DAILY,
                 parameters,
-                object : HoroscopeCallback {
+                object : ApiCallback {
                     override fun onSuccess(response: String) {
                         d("horoscope", response)
                         val json = Gson().fromJson(response, HoroscopeModel::class.java)
+                        rootView!!.horoscopeDescriptionTV.text = json.result!!.description
+                        rootView!!.spinKitLoaderProgressBar.setViewVisibility(false)
+                        rootView!!.horoscopeDescriptionCV.setViewVisibility(true)
                         Tools.animation(
                             App.instance.getContext(),
                             R.anim.zoom_in,
                             rootView!!.horoscopeDescriptionCV
                         )
-                        rootView!!.horoscopeDescriptionTV.text = json.result!!.description
-                        rootView!!.horoscopeDescriptionTV.setViewVisibility(true)
-                        rootView!!.horoscopeDescriptionCV.setViewVisibility(true)
                     }
 
                     override fun onError(error: String, body: String) {
 
                     }
                 })
+
+
         }
     }
 

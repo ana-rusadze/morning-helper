@@ -12,7 +12,7 @@
         android:id="@+id/helloImageView"
         android:layout_width="100dp"
         android:layout_height="80dp"
-        android:src="@drawable/hey"
+        android:src="@drawable/sloth_hey"
         android:visibility="visible" />
 
     <TextView

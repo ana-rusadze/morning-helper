@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:background="@drawable/white_rectangle_bg">
+        android:background="@drawable/white_rectangle_round_corners">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:background="@drawable/tab_background"
+            android:background="@android:color/transparent"
             android:clipToPadding="false"
             app:tabBackground="@drawable/tab_layout_selector"
             app:tabGravity="fill"

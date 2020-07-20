@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.morninghelper.R
 import com.example.morninghelper.networking.EndPoints
-import com.example.morninghelper.networking.HoroscopeCallback
+import com.example.morninghelper.networking.ApiCallback
 import com.example.morninghelper.networking.NewsData
 import com.example.morninghelper.tools.extensions.setViewVisibility
 import com.example.morninghelper.ui.BaseFragment
@@ -68,7 +68,7 @@ class NewsFragment : BaseFragment() {
         parameters["language"] = "en"
         parameters["page"] = page
         parameters["apiKey"] = NewsData.NEWS_KEY
-        NewsData.getRequest(EndPoints.EVERYTHING, parameters, object : HoroscopeCallback {
+        NewsData.getRequest(EndPoints.EVERYTHING, parameters, object : ApiCallback {
             override fun onError(error: String, body: String) {
                 Toast.makeText(
                     rootView!!.context,

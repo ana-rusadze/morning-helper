@@ -25,7 +25,7 @@
                 android:id="@+id/searchNoteET"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/search_edit_text_background"
+                android:background="@drawable/red_rectangle_background"
                 android:drawableEnd="@mipmap/ic_search"
                 android:hint="@string/search_note"
                 android:padding="10dp"
@@ -56,9 +56,9 @@
                 android:gravity="center"
                 android:fontFamily="@font/fredoka_one"
                 android:textSize="18sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:textColor="@color/greenLight"
-                android:layout_gravity="top|center"/>
+                android:layout_gravity="center"/>
 
 
         </FrameLayout>
@@ -77,7 +77,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:background="@drawable/button_background_white"/>
+            android:background="@drawable/white_circle"/>
 
 
         <ImageView

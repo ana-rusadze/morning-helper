@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:src="@drawable/sloth_welcome"
         android:padding="20dp"
-        android:background="@drawable/button_background_white"
+        android:background="@drawable/white_circle"
         android:contentDescription="@string/welcome_text" />
 
     <TextView

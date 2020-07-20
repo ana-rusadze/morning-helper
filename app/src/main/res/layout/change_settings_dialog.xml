@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="50dp"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/yellow_rectangle_round_corners"
+        android:fontFamily="@font/fredoka_one"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/change_your_name"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/changeUserNameET"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:hint="@string/your_name"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/greenColor"
+        android:textColorHint="@color/greenLight"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/saveNewUserNameBT"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/fredoka_one"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/greenColor"
+        android:textSize="18sp" />
+
+</LinearLayout>

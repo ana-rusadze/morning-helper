@@ -9,14 +9,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.morninghelper.R
 import com.example.morninghelper.networking.EndPoints
-import com.example.morninghelper.networking.HoroscopeCallback
+import com.example.morninghelper.networking.ApiCallback
+import com.example.morninghelper.networking.HoroscopeDataLoader
 import com.example.morninghelper.networking.WeatherData
 import com.example.morninghelper.tools.Tools
+import com.example.morninghelper.tools.extensions.setViewVisibility
 import com.example.morninghelper.ui.BaseFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.android.synthetic.main.weather_fragment.view.*
-import kotlinx.android.synthetic.main.weather_fragment.view.changeLocationEditText
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -61,12 +62,20 @@ class WeatherFragment : BaseFragment() {
         val parameters = mutableMapOf<String, String>()
         parameters["appid"] = WeatherData.WEATHER_KEY
         parameters["q"] = location
-        WeatherData.getRequest(EndPoints.CURRENT_WEATHER, parameters, object : HoroscopeCallback {
+        WeatherData.getRequest(EndPoints.CURRENT_WEATHER, parameters, object : ApiCallback {
             override fun onError(error: String, body: String) {
             }
-
             override fun onSuccess(response: String) {
-                parseJSON(response)
+                if(response == "null"){
+                    rootView!!.weatherRecyclerView.setViewVisibility(false)
+                    Tools.animation(rootView!!.context, R.anim.fade_in, rootView!!.locationErrorLayout)
+                    rootView!!.locationErrorLayout.setViewVisibility(true)
+                }else{
+                    rootView!!.locationErrorLayout.setViewVisibility(false)
+                    rootView!!.weatherRecyclerView.setViewVisibility(true)
+                    parseJSON(response)
+                }
+
             }
         })
 
@@ -93,8 +102,8 @@ class WeatherFragment : BaseFragment() {
             val sunrise = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(value.getLong("sunrise")*1000))
             val sunset = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(value.getLong("sunset")*1000))
 
-            weather.add(WeatherModel(R.drawable.sunrise, "sunrise", sunrise.toString()))
-            weather.add(WeatherModel(R.drawable.sunset, "sunset", sunset.toString()))
+            weather.add(WeatherModel(R.drawable.weather_sunrise, "sunrise", sunrise.toString()))
+            weather.add(WeatherModel(R.drawable.weather_sunset, "sunset", sunset.toString()))
         }
 
 
@@ -102,7 +111,7 @@ class WeatherFragment : BaseFragment() {
         if (json.has("wind")) {
             val value = json.getJSONObject("wind")
             val speed = value.getString("speed")
-            weather.add(WeatherModel(R.drawable.wind, "wind", speed))
+            weather.add(WeatherModel(R.drawable.weather_wind, "wind", "$speed m/s"))
         }
 
 
@@ -112,13 +121,13 @@ class WeatherFragment : BaseFragment() {
             val tempInC = (temp.toFloat() - 273.15).roundToInt()
             rootView!!.temperature.text = "$tempInC°C"
 
-            val feelsLike = value.getInt("feels_like")
+            val feelsLike = (value.getInt("feels_like").toFloat() - 273.15).roundToInt()
             val pressure = value.getInt("pressure")
             val humidity = value.getInt("humidity")
 
-            weather.add(WeatherModel(R.drawable.pressure, "pressure", pressure.toString()))
-            weather.add(WeatherModel(R.drawable.humidity, "humidity", humidity.toString()))
-            weather.add(WeatherModel(R.drawable.temperature, "feels like", feelsLike.toString()))
+            weather.add(WeatherModel(R.drawable.weather_pressure, "pressure", "$pressure hPa"))
+            weather.add(WeatherModel(R.drawable.weather_humidity, "humidity", "$humidity%"))
+            weather.add(WeatherModel(R.drawable.weather_temperature, "feels like", "$feelsLike°C"))
         }
 
         adapter.notifyDataSetChanged()

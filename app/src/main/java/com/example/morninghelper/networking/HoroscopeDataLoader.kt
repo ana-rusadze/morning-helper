@@ -32,32 +32,29 @@ object HoroscopeDataLoader {
 
 
     fun getRequest(
-        loaderView: View? = null,
         path: String,
         parameters: MutableMap<String, String>,
-        callBack: HoroscopeCallback
+        callBack: ApiCallback
     ) {
-        loaderView!!.visibility = View.VISIBLE
         val call = service.getRequest(path, parameters)
         call!!.enqueue(
             onCallBack(
-                loaderView, callBack
+               callBack
             )
         )
 
 
     }
 
-    private fun onCallBack(loaderView: View? = null, horoscopeCallback: HoroscopeCallback) =
+    private fun onCallBack(apiCallback: ApiCallback) =
         object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
-                horoscopeCallback.onError("error", t.message.toString())
+                apiCallback.onError("error", t.message.toString())
             }
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                loaderView!!.visibility = View.GONE
                 d("logSuccess", response.body().toString())
-                horoscopeCallback.onSuccess(response.body().toString())
+                apiCallback.onSuccess(response.body().toString())
             }
 
         }
